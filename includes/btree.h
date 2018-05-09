@@ -272,6 +272,7 @@ struct s_node	*btree_get_lowest_node(struct s_node *node);
 void			*btree_get_highest_node_content(struct s_node *node);
 void			*btree_get_lowest_node_content(struct s_node *node);
 
+int				btree_is_last_node(struct s_node *node);
 /*
 ** Return a specified content or Fn equ similary.
 ** Return:
