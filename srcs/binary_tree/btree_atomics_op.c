@@ -21,6 +21,9 @@ struct s_node	*btree_create_node(void *content, void *(*allocator)(size_t))
 	new = (struct s_node *)allocator(sizeof(struct s_node));
 	if (new == NULL)
 		return (NULL);
+	new->left = NULL;
+	new->right = NULL;
+	new->parent = NULL;
 	new->content = content;
 	return (new);
 }
