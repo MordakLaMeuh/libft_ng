@@ -25,7 +25,7 @@ static struct s_node	*two_childs_case(
 	struct s_node	*parent;
 	struct s_node	*content;
 
-	high_form_left = get_highest_elem(node->left);
+	high_form_left = btree_get_highest_node(node->left);
 	if (sibling)
 		*sibling = btree_get_sibling(high_form_left);
 	content = node->content;

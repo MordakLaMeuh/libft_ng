@@ -249,6 +249,29 @@ struct s_node	*btree_get_node_by_content(
 		void *data_ref,
 		int (*cmpf)(void *, void *));
 
+struct s_node	*btree_get_last_valid_node(
+		struct s_node *root,
+		void *data_ref,
+		int (*cmpf)(void *, void *));
+
+void			*btree_get_last_valid_content(
+		struct s_node *root,
+		void *data_ref,
+		int (*cmpf)(void *, void *));
+
+struct s_node	*btree_get_next_neighbours_node(struct s_node *node);
+
+struct s_node	*btree_get_prev_neighbours_node(struct s_node *node);
+
+void			*btree_get_next_neighbours_content(struct s_node *node);
+
+void			*btree_get_prev_neighbours_content(struct s_node *node);
+
+struct s_node	*btree_get_highest_node(struct s_node *node);
+struct s_node	*btree_get_lowest_node(struct s_node *node);
+void			*btree_get_highest_node_content(struct s_node *node);
+void			*btree_get_lowest_node_content(struct s_node *node);
+
 /*
 ** Return a specified content or Fn equ similary.
 ** Return:

@@ -16,8 +16,10 @@
 ** Logically, if the tree is okay, highest item is in far right sector.
 */
 
-struct s_node	*get_highest_elem(struct s_node *node)
+struct s_node	*btree_get_highest_node(struct s_node *node)
 {
+	if (node == NULL)
+		return (NULL);
 	while (node->right)
 		node = node->right;
 	return (node);
@@ -27,9 +29,37 @@ struct s_node	*get_highest_elem(struct s_node *node)
 ** Logically, if the tree is okay, lowest item is in far left sector.
 */
 
-struct s_node	*get_lowest_elem(struct s_node *node)
+struct s_node	*btree_get_lowest_node(struct s_node *node)
 {
+	if (node == NULL)
+		return (NULL);
 	while (node->left)
 		node = node->left;
 	return (node);
+}
+
+/*
+** Logically, if the tree is okay, highest item is in far right sector.
+*/
+
+void			*btree_get_highest_node_content(struct s_node *node)
+{
+	if (node == NULL)
+		return (NULL);
+	while (node->right)
+		node = node->right;
+	return (node->content);
+}
+
+/*
+** Logically, if the tree is okay, lowest item is in far left sector.
+*/
+
+void			*btree_get_lowest_node_content(struct s_node *node)
+{
+	if (node == NULL)
+		return (NULL);
+	while (node->left)
+		node = node->left;
+	return (node->content);
 }

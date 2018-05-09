@@ -77,9 +77,6 @@ struct s_node	*btree_get_grandparent(struct s_node *n);
 struct s_node	*btree_get_sibling(struct s_node *n);
 struct s_node	*btree_get_uncle(struct s_node *n);
 
-struct s_node	*get_highest_elem(struct s_node *node);
-struct s_node	*get_lowest_elem(struct s_node *node);
-
 void			minor_rotations_case(
 		struct s_node *sibling,
 		struct s_node **root);
