@@ -16,8 +16,9 @@ void			btree_swap_data(
 		struct s_node *node_a,
 		struct s_node *node_b)
 {
-	void *content;
-	size_t size;
+	void	*content;
+	size_t	size;
+	uint8_t	node_type;
 
 	content = node_a->content;
 	node_a->content = node_b->content;
@@ -26,4 +27,8 @@ void			btree_swap_data(
 	size = node_a->size;
 	node_a->size = node_b->size;
 	node_b->size = size;
+
+	node_type = node_a->mask.s.node_type;
+	node_a->mask.s.node_type = node_b->mask.s.node_type;
+	node_b->mask.s.node_type = node_type;
 }

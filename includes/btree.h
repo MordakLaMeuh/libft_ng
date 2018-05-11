@@ -43,6 +43,22 @@ enum	e_color {
 	DOUBLE_BLACK
 };
 
+enum	e_page_type {
+	TINY = 0,
+	MEDIUM,
+	LARGE
+};
+
+enum	e_node_type {
+	RECORD_ALLOCATED_TINY = 0,
+	RECORD_ALLOCATED_MEDIUM,
+	RECORD_ALLOCATED_LARGE,
+	RECORD_FREE_TINY,
+	RECORD_FREE_MEDIUM,
+	INDEX_TINY,
+	INDEX_MEDIUM
+};
+
 # define IS_RED(node)		(node && (node->mask.s.color == RED))
 # define IS_BLACK(node)		(node == NULL || (node->mask.s.color == BLACK))
 # define IS_DB_BLACK(node)	(node && (node->mask.s.color == DOUBLE_BLACK))
@@ -52,7 +68,7 @@ enum	e_color {
 
 struct s_mask {
 	uint8_t			color;
-	uint8_t			unused_a;
+	uint8_t			node_type;
 	uint16_t		unused_b;
 	uint32_t		unused_c;
 };
