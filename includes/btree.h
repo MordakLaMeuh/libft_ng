@@ -19,6 +19,7 @@
 */
 
 # include <stdlib.h>
+# include <stdint.h>
 
 struct s_node;
 
@@ -35,6 +36,48 @@ struct			s_rnb_tree_checker_result {
 	int					nb_levels;
 	int					nb_nodes;
 };
+
+enum	e_color {
+	RED = 0,
+	BLACK,
+	DOUBLE_BLACK
+};
+
+# define IS_RED(node)		(node && (node->mask.s.color == RED))
+# define IS_BLACK(node)		(node == NULL || (node->mask.s.color == BLACK))
+# define IS_DB_BLACK(node)	(node && (node->mask.s.color == DOUBLE_BLACK))
+# define SET_RED(node)		(node->mask.s.color = RED)
+# define SET_BLACK(node)	(node->mask.s.color = BLACK)
+# define SET_DB_BLACK(node)	(node->mask.s.color = DOUBLE_BLACK)
+
+struct s_mask {
+	uint8_t			color;
+	uint8_t			unused_a;
+	uint16_t		unused_b;
+	uint32_t		unused_c;
+};
+
+union u_mask {
+	uint64_t		raw;
+	struct s_mask	s;
+};
+
+struct			s_node {
+	struct s_node	*left;
+	struct s_node	*right;
+	struct s_node	*parent;
+	void			*content;
+	size_t			size;
+	union u_mask	mask;
+} __attribute__((aligned(16)));
+
+/*
+** XXX Define this function is always necessary.
+*/
+
+void			btree_swap_data(
+		struct s_node *node_b,
+		struct s_node *node_a);
 
 /*
 ** --- CONSTRUCTOR / DESTROYER / ATOMICS ---
@@ -66,21 +109,13 @@ int				btree_delete(struct s_node *root, void (*deallocator)(void *));
 size_t			btree_get_node_size(void);
 
 /*
-** Create a orphaned node associated with his own content.
+** Create a orphaned node.
 ** Return:
 ** SUCCESS: Allocated new orphaned node
 ** FAIL: (NULL) ENOMEM or Null allocator specified
 */
 
-struct s_node	*btree_create_node(void *content, void *(*allocator)(size_t));
-
-/*
-** Simple getter of content.
-** Return:
-** node->content
-*/
-
-void			*btree_get_node_content(struct s_node *node);
+struct s_node	*btree_create_node(void *(*allocator)(size_t));
 
 /*
 ** Check if similar value are generated.
@@ -89,29 +124,16 @@ void			*btree_get_node_content(struct s_node *node);
 ** FAIL: (NULL)
 */
 
-struct s_node	*btree_smash_checker(
+struct s_node			*btree_smash_checker(
 		struct s_node **root,
 		void *content,
-		int (*cmpf)(void *, void *),
+		int (*cmpf)(void *, struct s_node *),
 		void *(*allocator)(size_t));
 
 /*
 ** --- These below methods are very dangerous if node is already in a tree,
 ** you can destroy every-things. ---
 */
-
-/*
-** Attach a new content into a node.
-** Deallocate old content if necessary.
-** Return:
-** SUCCESS: 0
-** FAIL: -EINVAL Null node sended
-*/
-
-int				btree_attach_content(
-		struct s_node *node,
-		void *content,
-		void (*deallocator)(void *));
 
 /*
 ** Simply destroy a node.
@@ -121,17 +143,6 @@ int				btree_attach_content(
 */
 
 int				btree_destoy_node(
-		struct s_node *node,
-		void (*deallocator)(void *));
-
-/*
-** Delete content of a node.
-** Return:
-** SUCCESS: 0
-** FAIL: -EINVAL Null node or Null deallocator or Null node content sended
-*/
-
-int				btree_delete_node_content(
 		struct s_node *node,
 		void (*deallocator)(void *));
 
@@ -147,16 +158,10 @@ int				btree_delete_node_content(
 ** FAIL: (NULL)
 */
 
-struct s_node	*btree_insert_node_by_content(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void *(*allocator)(size_t));
-
 struct s_node	*btree_insert_node(
 		struct s_node **root,
 		struct s_node *new,
-		int (*cmpf)(void *, void *));
+		int (*cmpf)(struct s_node *, struct s_node *));
 
 /*
 ** Theses methods provide a node deletion service without Red and Black feature.
@@ -168,7 +173,7 @@ struct s_node	*btree_insert_node(
 int				btree_delete_node_by_content(
 		struct s_node **root,
 		void *content,
-		int (*cmpf)(void *, void *),
+		int (*cmpf)(void *, struct s_node *),
 		void (*deallocator)(void *));
 
 int				btree_delete_node(struct s_node **root, struct s_node *node,
@@ -186,16 +191,10 @@ int				btree_delete_node(struct s_node **root, struct s_node *node,
 ** FAIL: (NULL)
 */
 
-struct s_node	*btree_insert_rnb_node_by_content(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void *(*allocator)(size_t));
-
 struct s_node	*btree_insert_rnb_node(
 		struct s_node **root,
 		struct s_node *new,
-		int (*cmpf)(void *, void *));
+		int (*cmpf)(struct s_node *, struct s_node *));
 
 /*
 ** Theses methods provide a node deletion service without Red and Black feature.
@@ -207,7 +206,7 @@ struct s_node	*btree_insert_rnb_node(
 int				btree_delete_rnb_node_by_content(
 		struct s_node **root,
 		void *content,
-		int (*cmpf)(void *, void *),
+		int (*cmpf)(void *, struct s_node *),
 		void (*deallocator)(void *));
 
 int				btree_delete_rnb_node(
@@ -247,41 +246,21 @@ int				btree_check_rnb_property(struct s_node *root,
 struct s_node	*btree_get_node_by_content(
 		struct s_node *root,
 		void *data_ref,
-		int (*cmpf)(void *, void *));
+		int (*cmpf)(void *, struct s_node *));
 
 struct s_node	*btree_get_last_valid_node(
 		struct s_node *root,
 		void *data_ref,
-		int (*cmpf)(void *, void *));
-
-void			*btree_get_last_valid_content(
-		struct s_node *root,
-		void *data_ref,
-		int (*cmpf)(void *, void *));
+		int (*cmpf)(void *, struct s_node *));
 
 struct s_node	*btree_get_next_neighbours_node(struct s_node *node);
 
 struct s_node	*btree_get_prev_neighbours_node(struct s_node *node);
 
-void			*btree_get_next_neighbours_content(struct s_node *node);
-
-void			*btree_get_prev_neighbours_content(struct s_node *node);
-
 struct s_node	*btree_get_highest_node(struct s_node *node);
 struct s_node	*btree_get_lowest_node(struct s_node *node);
-void			*btree_get_highest_node_content(struct s_node *node);
-void			*btree_get_lowest_node_content(struct s_node *node);
 
 int				btree_is_last_node(struct s_node *node);
-/*
-** Return a specified content or Fn equ similary.
-** Return:
-** SUCCESS: founded content
-** FAIL: (NULL) If root or cmp fn are Null OR Not was not founded !
-*/
-
-void			*btree_search_content(struct s_node *root, void *data_ref,
-		int (*cmpf)(void *, void *));
 
 /*
 ** --- Providing three ways to run away the binary tree.
@@ -291,12 +270,15 @@ void			*btree_search_content(struct s_node *root, void *data_ref,
 ** FAIL: -EINVAL Null function pointer sended --
 */
 
-int				btree_apply_infix(struct s_node *root,
-		void (*applyf)(void *));
-int				btree_apply_prefix(struct s_node *root,
-		void (*applyf)(void *));
-int				btree_apply_suffix(struct s_node *root,
-		void (*applyf)(void *));
+int				btree_apply_infix(
+		struct s_node *root,
+		void (*applyf)(struct s_node *node));
+int				btree_apply_infix(
+		struct s_node *root,
+		void (*applyf)(struct s_node *node));
+int				btree_apply_suffix(
+		struct s_node *root,
+		void (*applyf)(struct s_node *node));
 
 /*
 ** --- Just check if the binary tree is not broken.
@@ -307,7 +289,7 @@ int				btree_apply_suffix(struct s_node *root,
 */
 
 int				btree_check_binary_tree(
-		struct s_node *root, int (*applyf)(void *));
+		struct s_node *root, int (*applyf)(struct s_node *));
 
 /*
 ** --- Some extra functions for binary tree ---
@@ -316,7 +298,7 @@ int				btree_check_binary_tree(
 int				btree_memory_move(void *dest, struct s_node *src_node);
 
 int				btree_apply_by_level(struct s_node *root,
-		void (*applyf)(void *content, int current_level, int first_elem));
+		void (*applyf)(struct s_node *node, int current_level, int first_elem));
 
 int				btree_level_count(struct s_node *root);
 

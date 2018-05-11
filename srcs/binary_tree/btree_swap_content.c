@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_apply_infix.c                                :+:      :+:    :+:   */
+/*   btree_swap_content.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmickael <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/22 16:51:45 by bmickael          #+#    #+#             */
-/*   Updated: 2017/03/24 02:50:18 by bmickael         ###   ########.fr       */
+/*   Created: 2017/03/22 13:38:18 by bmickael          #+#    #+#             */
+/*   Updated: 2017/03/24 07:12:30 by bmickael         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "btree_internal_header.h"
 
-int		btree_apply_infix(
-		struct s_node *root,
-		void (*applyf)(struct s_node *node))
+void			btree_swap_data(
+		struct s_node *node_a,
+		struct s_node *node_b)
 {
-	if (applyf == NULL)
-		return (-EINVAL);
-	if (root)
-	{
-		if (root->left)
-			btree_apply_infix(root->left, applyf);
-		applyf(root);
-		if (root->right)
-			btree_apply_infix(root->right, applyf);
-	}
-	return (0);
+	void *content;
+	size_t size;
+
+	content = node_a->content;
+	node_a->content = node_b->content;
+	node_b->content = content;
+
+	size = node_a->size;
+	node_a->size = node_b->size;
+	node_b->size = size;
 }

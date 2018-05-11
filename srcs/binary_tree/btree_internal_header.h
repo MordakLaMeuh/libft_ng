@@ -19,37 +19,10 @@
 # include <errno.h>
 # include <stdint.h>
 
-enum	e_color {
-	RED = 0,
-	BLACK,
-	DOUBLE_BLACK
-};
-
-# define IS_RED(node)		(node && node->color == RED)
-# define IS_BLACK(node)		(node == NULL || node->color == BLACK)
-# define IS_DB_BLACK(node)	(node && node->color == DOUBLE_BLACK)
-# define SET_RED(node)		(node->color = RED)
-# define SET_BLACK(node)	(node->color = BLACK)
-# define SET_DB_BLACK(node)	(node->color = DOUBLE_BLACK)
-
-struct			s_node {
-	struct s_node	*left;
-	struct s_node	*right;
-	struct s_node	*parent;
-	void			*content;
-	enum e_color	color;
-};
-
-struct s_node	*btree_internal_insert_node_content(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void *(*allocator)(size_t));
-
 struct s_node	*btree_internal_insert_node(
 		struct s_node **root,
 		struct s_node *new,
-		int (*cmpf)(void *, void *));
+		int (*cmpf)(struct s_node *, struct s_node *));
 
 struct s_node	*btree_internal_trash_node(
 		struct s_node *node,

@@ -16,13 +16,13 @@ static struct s_node	*node_recursive_candidate(
 		struct s_node *node,
 		struct s_node *last_candidate,
 		void *data_ref,
-		int (*cmpf)(void *, void *))
+		int (*cmpf)(void *, struct s_node *))
 {
 	int diff;
 
 	if (node == NULL)
 		return (last_candidate);
-	diff = cmpf(data_ref, node->content);
+	diff = cmpf(data_ref, node);
 	if (diff == 0)
 		return (node);
 	if (diff < 0)
@@ -34,24 +34,9 @@ static struct s_node	*node_recursive_candidate(
 struct s_node			*btree_get_last_valid_node(
 		struct s_node *root,
 		void *data_ref,
-		int (*cmpf)(void *, void *))
+		int (*cmpf)(void *, struct s_node *))
 {
 	if (root == NULL || cmpf == NULL)
 		return (NULL);
 	return (node_recursive_candidate(root, NULL, data_ref, cmpf));
-}
-
-void					*btree_get_last_valid_content(
-		struct s_node *root,
-		void *data_ref,
-		int (*cmpf)(void *, void *))
-{
-	struct s_node *node;
-
-	if (root == NULL || cmpf == NULL)
-		return (NULL);
-	node = node_recursive_candidate(root, NULL, data_ref, cmpf);
-	if (node != NULL)
-		return (node->content);
-	return (NULL);
 }

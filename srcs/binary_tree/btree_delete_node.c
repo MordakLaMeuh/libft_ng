@@ -23,14 +23,11 @@ static struct s_node	*two_childs_case(
 	struct s_node	*high_form_left;
 	struct s_node	*child;
 	struct s_node	*parent;
-	struct s_node	*content;
 
 	high_form_left = btree_get_highest_node(node->left);
 	if (sibling)
 		*sibling = btree_get_sibling(high_form_left);
-	content = node->content;
-	node->content = high_form_left->content;
-	high_form_left->content = content;
+	btree_swap_data(node, high_form_left);
 	parent = high_form_left->parent;
 	child = high_form_left->left;
 	if (parent != node)
@@ -110,7 +107,7 @@ struct s_node			*btree_internal_trash_node(
 int						btree_delete_node_by_content(
 		struct s_node **root,
 		void *content,
-		int (*cmpf)(void *, void *),
+		int (*cmpf)(void *, struct s_node *),
 		void (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
