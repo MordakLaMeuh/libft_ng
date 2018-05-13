@@ -87,6 +87,19 @@ struct			s_node {
 	union u_mask	mask;
 } __attribute__((aligned(16)));
 
+enum e_node_register {
+	ERROR,
+	NODE_ALREADY_PRESENT,
+	NODE_ALLOCATED,
+};
+
+struct s_node_params {
+	void					*(*allocator)(size_t);
+	void					(*associator)(void *, struct s_node *);
+	int						(*comp)(void *, struct s_node *);
+	enum e_node_register	reg;
+};
+
 /*
 ** XXX Define this function is always necessary.
 */
@@ -211,6 +224,11 @@ struct s_node	*btree_insert_rnb_node(
 		struct s_node **root,
 		struct s_node *new,
 		int (*cmpf)(struct s_node *, struct s_node *));
+
+struct s_node	*btree_try_to_insert_rnb_node(
+		struct s_node **root,
+		void *content,
+		struct s_node_params *use_ctx);
 
 /*
 ** Theses methods provide a node deletion service without Red and Black feature.
