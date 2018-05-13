@@ -27,7 +27,7 @@ struct s_node	*btree_create_node(void *(*allocator)(size_t))
 	return (new);
 }
 
-int				btree_destoy_node(
+int				btree_destroy_node(
 		struct s_node *node,
 		void (*deallocator)(void *))
 {

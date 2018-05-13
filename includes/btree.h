@@ -53,10 +53,12 @@ enum	e_node_type {
 	RECORD_ALLOCATED_TINY = 0,
 	RECORD_ALLOCATED_MEDIUM,
 	RECORD_ALLOCATED_LARGE,
+	INDEX_TINY,
+	INDEX_MEDIUM,
+	PARENT_RECORD_FREE_TINY,
+	PARENT_RECORD_FREE_MEDIUM,
 	RECORD_FREE_TINY,
 	RECORD_FREE_MEDIUM,
-	INDEX_TINY,
-	INDEX_MEDIUM
 };
 
 # define IS_RED(node)		(node && (node->mask.s.color == RED))
@@ -171,7 +173,7 @@ struct s_node			*btree_smash_checker(
 ** FAIL: -EINVAL Null node or Null deallocator sended
 */
 
-int				btree_destoy_node(
+int				btree_destroy_node(
 		struct s_node *node,
 		void (*deallocator)(void *));
 
@@ -243,10 +245,10 @@ int				btree_delete_rnb_node_by_content(
 		int (*cmpf)(void *, struct s_node *),
 		void (*deallocator)(void *));
 
-int				btree_delete_rnb_node(
-		struct s_node **root,
-		struct s_node *node,
-		void (*deallocator)(void *));
+struct s_node	*btree_delete_rnb_node(
+				struct s_node **root,
+				struct s_node *node,
+				void (*deallocator)(void *));
 
 /*
 ** --- Check if a Red and Black tree respect standard rules.

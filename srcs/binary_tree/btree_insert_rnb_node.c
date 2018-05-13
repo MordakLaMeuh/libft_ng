@@ -32,7 +32,7 @@ struct s_node	*btree_insert_rnb_node(
 	struct s_node *clone;
 	struct s_node *new_root;
 
-	if (root == NULL || new == NULL || cmpf == NULL || new->content == NULL)
+	if (root == NULL || new == NULL || cmpf == NULL)
 		return (NULL);
 	clone = btree_internal_insert_node(root, new, cmpf);
 	if (clone != new)

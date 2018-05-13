@@ -37,7 +37,7 @@ int				btree_delete_rnb_node_by_content(
 	return (0);
 }
 
-int				btree_delete_rnb_node(
+struct s_node	*btree_delete_rnb_node(
 				struct s_node **root,
 				struct s_node *node,
 				void (*deallocator)(void *))
@@ -46,13 +46,14 @@ int				btree_delete_rnb_node(
 	struct s_node *sibling;
 
 	sibling = NULL;
-	if (root == NULL || node == NULL || deallocator == NULL)
-		return (-EINVAL);
+	if (root == NULL || node == NULL)
+		return (NULL);
 	node_to_trash = btree_internal_trash_node(node, root, &sibling);
 	if (node_to_trash->parent != NULL)
 		apply_delete_strategy(node_to_trash, root, sibling);
 	else if (*root)
 		SET_BLACK((*root));
-	deallocator(node_to_trash);
-	return (0);
+	if (deallocator)
+		deallocator(node_to_trash);
+	return (node_to_trash);
 }
