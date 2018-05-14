@@ -245,7 +245,7 @@ int				btree_delete_rnb_node_by_content(
 		int (*cmpf)(void *, struct s_node *),
 		void (*deallocator)(void *));
 
-struct s_node	*btree_delete_rnb_node(
+int				btree_delete_rnb_node(
 				struct s_node **root,
 				struct s_node *node,
 				void (*deallocator)(void *));
