@@ -69,8 +69,6 @@ void			apply_delete_strategy(
 
 void			btree_rotate_right(struct s_node *n);
 void			btree_rotate_left(struct s_node *n);
-void			btree_delete_rotate_right(struct s_node *node);
-void			btree_delete_rotate_left(struct s_node *node);
 
 struct s_node	*btree_get_parent(struct s_node *n);
 struct s_node	*btree_get_grandparent(struct s_node *n);

@@ -18,13 +18,27 @@ static void		do_rotation(struct s_node *new, struct s_node *parent)
 
 	grandparent = parent->parent;
 	if (parent == grandparent->right && new == parent->left)
+	{
 		btree_rotate_right(parent);
+		btree_rotate_left(grandparent);
+		SET_BLACK(new);
+		SET_RED(grandparent);
+		return ;
+	}
 	else if (parent == grandparent->left && new == parent->right)
+	{
 		btree_rotate_left(parent);
+		btree_rotate_right(grandparent);
+		SET_BLACK(new);
+		SET_RED(grandparent);
+		return ;
+	}
 	if (new == parent->left)
 		btree_rotate_right(grandparent);
 	else
 		btree_rotate_left(grandparent);
+	SET_BLACK(parent);
+	SET_RED(grandparent);
 }
 
 void			apply_insert_strategy(struct s_node *new)

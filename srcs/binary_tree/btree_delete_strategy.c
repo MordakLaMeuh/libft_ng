@@ -23,7 +23,7 @@ void			sibling_is_red(struct s_node **sibling, struct s_node **root)
 	parent = (*sibling)->parent;
 	if (*sibling == parent->left)
 	{
-		btree_delete_rotate_right(parent);
+		btree_rotate_right(parent);
 		SET_BLACK((*sibling));
 		SET_RED((*sibling)->right);
 		if (parent == *root)
@@ -32,7 +32,7 @@ void			sibling_is_red(struct s_node **sibling, struct s_node **root)
 	}
 	else
 	{
-		btree_delete_rotate_left(parent);
+		btree_rotate_left(parent);
 		SET_BLACK((*sibling));
 		SET_RED((*sibling)->left);
 		if (parent == *root)
@@ -54,14 +54,14 @@ void			minor_rotations_case(
 	parent = sibling->parent;
 	if (sibling == parent->left && IS_BLACK(sibling->left))
 	{
-		btree_delete_rotate_left(sibling);
+		btree_rotate_left(sibling);
 		SET_BLACK(sibling->parent);
 		SET_RED(sibling);
 		major_rotations_case(sibling->parent, root);
 	}
 	else if (sibling == parent->right && IS_BLACK(sibling->right))
 	{
-		btree_delete_rotate_right(sibling);
+		btree_rotate_right(sibling);
 		SET_BLACK(sibling->parent);
 		SET_RED(sibling);
 		major_rotations_case(sibling->parent, root);
@@ -77,7 +77,7 @@ void			major_rotations_case(
 	parent = sibling->parent;
 	if (sibling == parent->left && IS_RED(sibling->left))
 	{
-		btree_delete_rotate_right(parent);
+		btree_rotate_right(parent);
 		if (IS_RED(sibling->left) && IS_RED(sibling->right))
 			SET_RED(sibling);
 		SET_BLACK(sibling->left);
@@ -85,7 +85,7 @@ void			major_rotations_case(
 	}
 	else if (sibling == parent->right && IS_RED(sibling->right))
 	{
-		btree_delete_rotate_left(parent);
+		btree_rotate_left(parent);
 		if (IS_RED(sibling->left) && IS_RED(sibling->right))
 			SET_RED(sibling);
 		SET_BLACK(sibling->left);
