@@ -80,12 +80,17 @@ union u_mask {
 	struct s_mask	s;
 };
 
+union u_ptr {
+	size_t			size;
+	void			*ptr_b;
+};
+
 struct			s_node {
 	struct s_node	*left;
 	struct s_node	*right;
 	struct s_node	*parent;
-	void			*content;
-	size_t			size;
+	void			*ptr_a;
+	union u_ptr		m;
 	union u_mask	mask;
 } __attribute__((aligned(16)));
 

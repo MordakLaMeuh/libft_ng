@@ -17,16 +17,16 @@ void			btree_swap_data(
 		struct s_node *node_b)
 {
 	void	*content;
-	size_t	size;
+	void	*size;
 	uint8_t	node_type;
 
-	content = node_a->content;
-	node_a->content = node_b->content;
-	node_b->content = content;
+	content = node_a->ptr_a;
+	node_a->ptr_a = node_b->ptr_a;
+	node_b->ptr_a = content;
 
-	size = node_a->size;
-	node_a->size = node_b->size;
-	node_b->size = size;
+	size = node_a->m.ptr_b;
+	node_a->m.ptr_b = node_b->m.ptr_b;
+	node_b->m.ptr_b = size;
 
 	node_type = node_a->mask.s.node_type;
 	node_a->mask.s.node_type = node_b->mask.s.node_type;

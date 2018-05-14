@@ -47,7 +47,7 @@ static struct s_node	*no_root_case(
 		return (NULL);
 	new->left = NULL;
 	new->right = NULL;
-	new->content = content;
+	new->ptr_a = content;
 	*root = new;
 	new->parent = NULL;
 	return (new);
@@ -71,7 +71,7 @@ static struct s_node	*btree_collision_insert_node_content(
 		return (NULL);
 	new->left = NULL;
 	new->right = NULL;
-	new->content = content;
+	new->ptr_a = content;
 	if (cmpf(content, parent) < 0)
 		parent->left = new;
 	else

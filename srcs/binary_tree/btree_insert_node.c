@@ -63,7 +63,7 @@ struct s_node	*btree_insert_node(
 		struct s_node *new,
 		int (*cmpf)(struct s_node *, struct s_node *))
 {
-	if (root == NULL || new == NULL || cmpf == NULL || new->content == NULL)
+	if (root == NULL || new == NULL || cmpf == NULL || new->ptr_a == NULL)
 		return (NULL);
 	btree_internal_insert_node(root, new, cmpf);
 	SET_BLACK(new);
