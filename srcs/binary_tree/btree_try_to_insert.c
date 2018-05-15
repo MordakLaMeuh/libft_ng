@@ -97,6 +97,8 @@ struct s_node			*btree_try_to_insert_rnb_node(
 	new = btree_try_insert_node(root, content, use_ctx);
 	if (new == NULL)
 		return (NULL);
+	if (use_ctx->reg == NODE_ALREADY_PRESENT)
+		return (new);
 	SET_RED(new);
 	apply_insert_strategy(new);
 	new_root = new;
