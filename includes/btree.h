@@ -53,12 +53,18 @@ enum	e_node_type {
 	RECORD_ALLOCATED_TINY = 0,
 	RECORD_ALLOCATED_MEDIUM,
 	RECORD_ALLOCATED_LARGE,
-	INDEX_TINY,
-	INDEX_MEDIUM,
+//	INDEX_TINY,
+//	INDEX_MEDIUM,
+	INDEX,
 	PARENT_RECORD_FREE_TINY,
 	PARENT_RECORD_FREE_MEDIUM,
 	RECORD_FREE_TINY,
 	RECORD_FREE_MEDIUM,
+};
+
+enum e_node_type_b {
+	INDEX_TINY,
+	INDEX_MEDIUM,
 };
 
 # define IS_RED(node)		(node && (node->mask.s.color == RED))
@@ -71,7 +77,8 @@ enum	e_node_type {
 struct s_mask {
 	uint8_t			color;
 	uint8_t			node_type;
-	uint16_t		unused_b;
+	uint8_t			node_type_b;
+	uint8_t			unused_b;
 	uint32_t		unused_c;
 };
 
