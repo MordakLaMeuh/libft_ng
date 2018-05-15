@@ -45,7 +45,7 @@ static int		s_exec(
 
 	*line = NULL;
 	index->l_size = 0;
-	while (TRUE)
+	while (true)
 	{
 		if ((index->buff_size < 1) &&
 		(index->buff_size = read(index->fd, index->buffer, BUFF_SIZE)) <= 0)

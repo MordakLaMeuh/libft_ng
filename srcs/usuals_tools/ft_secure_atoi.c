@@ -12,44 +12,44 @@
 
 #include "libft.h"
 
-static int		secure_mul(int a, int b, int *error)
+static int		secure_mul(int a, int b, bool *error)
 {
 	if (a > INT_MAX / b)
-		*error = TRUE;
+		*error = true;
 	if ((a < INT_MIN / b))
-		*error = TRUE;
+		*error = true;
 	if ((a == -1) && (b == INT_MIN))
-		*error = TRUE;
+		*error = true;
 	if ((b == -1) && (a == INT_MIN))
-		*error = TRUE;
+		*error = true;
 	return (a * b);
 }
 
-static int		secure_add(int a, int b, int *error)
+static int		secure_add(int a, int b, bool *error)
 {
 	if ((a > 0) && (b > INT_MAX - a))
-		*error = TRUE;
+		*error = true;
 	if ((a < 0) && (b < INT_MIN - a))
-		*error = TRUE;
+		*error = true;
 	return (a + b);
 }
 
-int				ft_secure_atoi(const char *nptr, int *error)
+int				ft_secure_atoi(const char *nptr, bool *error)
 {
 	int result;
 	int sign;
 
-	*error = FALSE;
+	*error = false;
 	result = 0;
-	sign = FALSE;
+	sign = false;
 	if (*nptr == '-' || *nptr == '+')
 	{
 		if (*nptr == '-')
-			sign = TRUE;
+			sign = true;
 		nptr++;
 	}
 	if (!(*nptr >= '0' && *nptr <= '9'))
-		*error = TRUE;
+		*error = true;
 	else
 		while (*nptr >= '0' && *nptr <= '9')
 		{
@@ -59,6 +59,6 @@ int				ft_secure_atoi(const char *nptr, int *error)
 			nptr++;
 		}
 	if (*nptr != '\0')
-		*error = TRUE;
+		*error = true;
 	return (result);
 }

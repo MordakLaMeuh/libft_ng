@@ -17,9 +17,7 @@
 # include <stdint.h>
 # include <unistd.h>
 # include <limits.h>
-
-# define FALSE		0
-# define TRUE		1
+# include <stdbool.h>
 
 # define HEX_T(x)	"0123456789ABCDEF"[x]
 
@@ -73,7 +71,7 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
-int					ft_secure_atoi(const char *nptr, int *error);
+int					ft_secure_atoi(const char *nptr, bool *error);
 
 void				*ft_aligned_memcpy(void *restrict dst,
 		const void *restrict src, size_t n);
@@ -83,7 +81,7 @@ int					ft_printf(const char *restrict format, ...);
 int					ft_eprintf(const char *restrict format, ...);
 int					ft_fprintf(int const fd, const char *restrict format,
 																		...);
-int					ft_asprintf(char **str, const char *restrict format, ...);
+int					ft_dprintf(bool display, const char *restrict format, ...);
 int					ft_sprintf(char *str, const char *restrict format, ...);
 
 #endif

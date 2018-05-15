@@ -33,6 +33,25 @@ int		ft_printf(const char *restrict format, ...)
 	return (op.total_size);
 }
 
+int		ft_dprintf(bool display, const char *restrict format, ...)
+{
+	t_status	op;
+	int			ret;
+
+	if (display == false)
+		return (0);
+	ft_memset(&op, 0, sizeof(t_status));
+	op.s = format;
+	op.fd = STDOUT;
+	va_start(op.ap, format);
+	ret = new_chain(&op);
+	va_end(op.ap);
+	if (ret < 0)
+		return (ret);
+	fflush_buffer(&op);
+	return (op.total_size);
+}
+
 int		ft_eprintf(const char *restrict format, ...)
 {
 	t_status	op;
@@ -85,19 +104,3 @@ int		ft_sprintf(char *str, const char *restrict format, ...)
 	fflush_buffer(&op);
 	return (op.total_size);
 }
-
-/*
-** int		ft_asprintf(char **str, const char *restrict format, ...)
-** {
-**	t_status op;
-**
-**	ft_memset(&op, 0, sizeof(t_status));
-**	op.s = format;
-**	va_start(op.ap, format);
-**	new_chain(&op);
-**	va_end(op.ap);
-**	if (!(*str = op.ptr))
-**		return (-1);
-**	return (op.size);
-** }
-*/

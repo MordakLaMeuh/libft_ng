@@ -39,24 +39,24 @@ static int		get_wchar_t_size(wchar_t *src, int p)
 
 static int		check_extended_string(wchar_t *src)
 {
-	int err;
+	bool err;
 
 	while (*src)
 	{
-		err = TRUE;
+		err = true;
 		if ((*src & 0x80000000) || (*src >= 0xD800 && *src <= 0xDFFF))
-			err = TRUE;
+			err = true;
 		else if (MB_CUR_MAX == 1 && (*src <= (wchar_t)0xFF))
-			err = FALSE;
+			err = false;
 		else if (MB_CUR_MAX == 2 && (*src <= (wchar_t)0x7FF))
-			err = FALSE;
+			err = false;
 		else if (MB_CUR_MAX == 3 && (*src <= (wchar_t)0xFFFF))
-			err = FALSE;
+			err = false;
 		else if (MB_CUR_MAX == 4 && (*src <= (wchar_t)0x10FFFF))
-			err = FALSE;
+			err = false;
 		else
-			err = TRUE;
-		if (err == TRUE)
+			err = true;
+		if (err == true)
 			return (0);
 		src++;
 	}

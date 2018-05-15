@@ -52,7 +52,7 @@ static int		p_extract_length(const char *restrict s, t_args *args)
 	int			i;
 
 	origin = s;
-	while (TRUE)
+	while (true)
 	{
 		i = -1;
 		while (++i < LENGTH_TYPE_QUANTITY)

@@ -18,11 +18,9 @@
 # include <inttypes.h>
 # include <wchar.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # define MAX_BUF_LEN			4096
-
-# define FALSE					0
-# define TRUE					1
 
 typedef unsigned char			t_u_char;
 typedef unsigned short int		t_su_int;
