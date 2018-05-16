@@ -60,11 +60,6 @@ enum	e_node_type {
 	RECORD_FREE_MEDIUM,
 };
 
-enum e_node_type_b {
-	INDEX_TINY,
-	INDEX_MEDIUM,
-};
-
 # define IS_RED(node)		(node && (node->mask.s.color == RED))
 # define IS_BLACK(node)		(node == NULL || (node->mask.s.color == BLACK))
 # define IS_DB_BLACK(node)	(node && (node->mask.s.color == DOUBLE_BLACK))
@@ -75,9 +70,9 @@ enum e_node_type_b {
 struct s_mask {
 	uint8_t			color;
 	uint8_t			node_type;
-	uint8_t			node_type_b;
+	uint8_t			unused_a;
 	uint8_t			unused_b;
-	uint32_t		unused_c;
+	uint32_t		range;
 };
 
 union u_mask {

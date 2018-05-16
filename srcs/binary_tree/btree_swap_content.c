@@ -32,7 +32,7 @@ void			btree_swap_data(
 	node_a->mask.s.node_type = node_b->mask.s.node_type;
 	node_b->mask.s.node_type = node_type;
 
-	node_type = node_a->mask.s.node_type_b;
-	node_a->mask.s.node_type_b = node_b->mask.s.node_type_b;
-	node_b->mask.s.node_type_b = node_type;
+	node_type = node_a->mask.s.range;
+	node_a->mask.s.range = node_b->mask.s.range;
+	node_b->mask.s.range = node_type;
 }
