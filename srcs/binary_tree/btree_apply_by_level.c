@@ -29,8 +29,10 @@ static int		p_recurse_level_count(struct s_node *root, int n)
 	return ((i > j) ? i : j);
 }
 
-static void		rec_level(struct s_node *root, void (*applyf)(struct s_node *node,
-		int current_level, int first_elem), int lvl, int *cap)
+static void		rec_level(
+		struct s_node *root,
+		void (*applyf)(struct s_node *node, int current_level, int first_elem),
+		int lvl, int *cap)
 {
 	if (lvl == *cap || lvl == -(*cap))
 	{

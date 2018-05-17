@@ -23,7 +23,7 @@
 
 struct s_node;
 
-enum	e_check_result {
+enum			e_check_result {
 	FAILED = 0,
 	OK
 };
@@ -37,19 +37,19 @@ struct			s_rnb_tree_checker_result {
 	int					nb_nodes;
 };
 
-enum	e_color {
+enum			e_color {
 	RED = 0,
 	BLACK,
 	DOUBLE_BLACK
 };
 
-enum	e_page_type {
+enum			e_page_type {
 	TINY = 0,
 	MEDIUM,
 	LARGE
 };
 
-enum	e_node_type {
+enum			e_node_type {
 	RECORD_ALLOCATED_TINY = 0,
 	RECORD_ALLOCATED_MEDIUM,
 	RECORD_ALLOCATED_LARGE,
@@ -67,7 +67,7 @@ enum	e_node_type {
 # define SET_BLACK(node)	(node->mask.s.color = BLACK)
 # define SET_DB_BLACK(node)	(node->mask.s.color = DOUBLE_BLACK)
 
-struct s_mask {
+struct			s_mask {
 	uint8_t			color;
 	uint8_t			node_type;
 	uint8_t			unused_a;
@@ -75,12 +75,12 @@ struct s_mask {
 	uint32_t		range;
 };
 
-union u_mask {
+union			u_mask {
 	uint64_t		raw;
 	struct s_mask	s;
 };
 
-union u_ptr {
+union			u_ptr {
 	size_t			size;
 	void			*ptr_b;
 };
@@ -94,13 +94,13 @@ struct			s_node {
 	union u_mask	mask;
 } __attribute__((aligned(16)));
 
-enum e_node_register {
+enum			e_node_register {
 	ERROR,
 	NODE_ALREADY_PRESENT,
 	NODE_ALLOCATED,
 };
 
-struct s_node_params {
+struct			s_node_params {
 	void					*(*allocator)(size_t);
 	void					(*associator)(void *, struct s_node *);
 	int						(*comp)(void *, struct s_node *);
@@ -160,7 +160,7 @@ struct s_node	*btree_create_node(void *(*allocator)(size_t));
 ** FAIL: (NULL)
 */
 
-struct s_node			*btree_smash_checker(
+struct s_node	*btree_smash_checker(
 		struct s_node **root,
 		void *content,
 		int (*cmpf)(void *, struct s_node *),
