@@ -36,7 +36,7 @@ SRC_BTREE	= btree_apply_infix btree_apply_prefix btree_apply_suffix \
 	btree_rotation_node btree_family_node \
 	btree_insert_strategy btree_delete_strategy \
 	btree_smash_checker \
-	btree_get_last_valid btree_get_neighbours
+	btree_get_last_valid btree_get_neighbours btree_conditional_insert
 
 SRC_CHAINED	= lst_new lst_del_one lst_del lst_add lst_iter lst_map lst_invert_rec \
 	lst_push_front lst_push_back lst_pre_alloc lst_merge lst_create_elem lst_invert_it

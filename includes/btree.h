@@ -36,6 +36,11 @@ struct			s_rnb_tree_checker_result {
 	int					nb_nodes;
 };
 
+enum			e_node_register {
+	NODE_NEW,
+	NODE_ALREADY_PRESENT,
+};
+
 /*
 ** --- CONSTRUCTOR / DESTROYER / ATOMICS ---
 */
@@ -157,6 +162,12 @@ struct s_node	*btree_insert_node(
 		struct s_node **root,
 		struct s_node *new,
 		int (*cmpf)(void *, void *));
+
+struct s_node	*btree_conditional_insert(
+		struct s_node **root,
+		void *content,
+		int (*cmpf)(void *, void *),
+		void *(*allocator)(size_t));
 
 /*
 ** Theses methods provide a node deletion service without Red and Black feature.
