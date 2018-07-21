@@ -12,15 +12,13 @@
 
 #include "btree_internal_header.h"
 
-int		btree_apply_prefix(
-		struct s_node *root,
-		void (*applyf)(struct s_node *node))
+int		btree_apply_prefix(struct s_node *root, void (*applyf)(void *))
 {
 	if (applyf == NULL)
 		return (-EINVAL);
 	if (root)
 	{
-		applyf(root);
+		applyf(root->content);
 		if (root->left)
 			btree_apply_prefix(root->left, applyf);
 		if (root->right)

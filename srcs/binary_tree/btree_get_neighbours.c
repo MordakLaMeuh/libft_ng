@@ -51,3 +51,23 @@ struct s_node			*btree_get_prev_neighbours_node(struct s_node *node)
 	}
 	return (NULL);
 }
+
+void					*btree_get_next_neighbours_content(struct s_node *node)
+{
+	struct s_node *res_node;
+
+	res_node = btree_get_next_neighbours_node(node);
+	if (res_node != NULL)
+		return (res_node->content);
+	return (NULL);
+}
+
+void					*btree_get_prev_neighbours_content(struct s_node *node)
+{
+	struct s_node *res_node;
+
+	res_node = btree_get_prev_neighbours_node(node);
+	if (res_node != NULL)
+		return (res_node->content);
+	return (NULL);
+}

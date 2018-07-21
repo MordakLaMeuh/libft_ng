@@ -12,9 +12,7 @@
 
 #include "btree_internal_header.h"
 
-int		btree_apply_infix(
-		struct s_node *root,
-		void (*applyf)(struct s_node *node))
+int		btree_apply_infix(struct s_node *root, void (*applyf)(void *))
 {
 	if (applyf == NULL)
 		return (-EINVAL);
@@ -22,7 +20,7 @@ int		btree_apply_infix(
 	{
 		if (root->left)
 			btree_apply_infix(root->left, applyf);
-		applyf(root);
+		applyf(root->content);
 		if (root->right)
 			btree_apply_infix(root->right, applyf);
 	}

@@ -24,15 +24,39 @@
 ** And color it to BLACK
 */
 
+struct s_node	*btree_insert_rnb_node_by_content(
+		struct s_node **root,
+		void *content,
+		int (*cmpf)(void *, void *),
+		void *(*allocator)(size_t))
+{
+	struct s_node *new;
+	struct s_node *new_root;
+
+	if (root == NULL || cmpf == NULL || allocator == NULL)
+		return (NULL);
+	new = btree_internal_insert_node_content(root, content, cmpf, allocator);
+	if (new == NULL)
+		return (NULL);
+	SET_RED(new);
+	apply_insert_strategy(new);
+	new_root = new;
+	while (new_root->parent != NULL)
+		new_root = new_root->parent;
+	*root = new_root;
+	SET_BLACK((*root));
+	return (new);
+}
+
 struct s_node	*btree_insert_rnb_node(
 		struct s_node **root,
 		struct s_node *new,
-		int (*cmpf)(struct s_node *, struct s_node *))
+		int (*cmpf)(void *, void *))
 {
 	struct s_node *clone;
 	struct s_node *new_root;
 
-	if (root == NULL || new == NULL || cmpf == NULL)
+	if (root == NULL || new == NULL || cmpf == NULL || new->content == NULL)
 		return (NULL);
 	clone = btree_internal_insert_node(root, new, cmpf);
 	if (clone != new)

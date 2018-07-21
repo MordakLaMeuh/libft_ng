@@ -15,11 +15,11 @@
 static struct s_node	*simulate_insert_child(
 		struct s_node *parent,
 		void *content,
-		int (*cmpf)(void *, struct s_node *))
+		int (*cmpf)(void *, void *))
 {
 	int diff;
 
-	if ((diff = cmpf(content, parent)) < 0)
+	if ((diff = cmpf(content, parent->content)) < 0)
 	{
 		if (!parent->left)
 			return (parent);
@@ -47,7 +47,7 @@ static struct s_node	*no_root_case(
 		return (NULL);
 	new->left = NULL;
 	new->right = NULL;
-	new->ptr_a = content;
+	new->content = content;
 	*root = new;
 	new->parent = NULL;
 	return (new);
@@ -56,7 +56,7 @@ static struct s_node	*no_root_case(
 static struct s_node	*btree_collision_insert_node_content(
 		struct s_node **root,
 		void *content,
-		int (*cmpf)(void *, struct s_node *),
+		int (*cmpf)(void *, void *),
 		void *(*allocator)(size_t))
 {
 	struct s_node	*parent;
@@ -71,8 +71,8 @@ static struct s_node	*btree_collision_insert_node_content(
 		return (NULL);
 	new->left = NULL;
 	new->right = NULL;
-	new->ptr_a = content;
-	if (cmpf(content, parent) < 0)
+	new->content = content;
+	if (cmpf(content, parent->content) < 0)
 		parent->left = new;
 	else
 		parent->right = new;
@@ -83,7 +83,7 @@ static struct s_node	*btree_collision_insert_node_content(
 struct s_node			*btree_smash_checker(
 		struct s_node **root,
 		void *content,
-		int (*cmpf)(void *, struct s_node *),
+		int (*cmpf)(void *, void *),
 		void *(*allocator)(size_t))
 {
 	struct s_node *new;
@@ -94,12 +94,12 @@ struct s_node			*btree_smash_checker(
 	new = btree_collision_insert_node_content(root, content, cmpf, allocator);
 	if (new == NULL)
 		return (NULL);
-	SET_RED(new);
+	new->color = RED;
 	apply_insert_strategy(new);
 	new_root = new;
 	while (new_root->parent != NULL)
 		new_root = new_root->parent;
 	*root = new_root;
-	SET_BLACK((*root));
+	(*root)->color = BLACK;
 	return (new);
 }
