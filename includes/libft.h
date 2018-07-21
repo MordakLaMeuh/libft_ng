@@ -21,6 +21,7 @@
 
 # define HEX_T(x)	"0123456789ABCDEF"[x]
 
+size_t				array_len(void **array);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *restrict dst, const void *restrict src,

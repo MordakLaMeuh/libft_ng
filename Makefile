@@ -21,7 +21,7 @@ SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_mem
 	ft_strequ ft_strnequ \
 	ft_putchar ft_putstr ft_putendl ft_putnbr ft_putchar_fd ft_putstr_fd \
 	ft_putendl_fd ft_putnbr_fd ft_secure_atoi \
-	ft_aligned_memcpy ft_aligned_bzero
+	ft_aligned_memcpy ft_aligned_bzero ft_array_len
 
 SRC_PRINTF	= beacon op_main modifiers extract_args \
 	s_string s_char s_numeric_u s_numeric_i \
@@ -42,7 +42,7 @@ SRC_BTREE	= btree_apply_infix btree_apply_prefix btree_apply_suffix \
 SRC_CHAINED	= lst_new lst_del_one lst_del lst_add lst_iter lst_map lst_invert_rec \
 	lst_push_front lst_push_back lst_pre_alloc lst_merge lst_create_elem lst_invert_it
 
-SRC_LST	= lst_add lst_del_one lst_for_n lst_foreach lst_get_n lst_iteri lst_last lst_len lst_pop lst_pushback lst_remove lst_return_if lst_rev lst_sort_insert
+SRC_LST	= lst_add lst_del_one lst_for_n lst_foreach lst_get_n lst_iteri lst_last lst_len lst_pop lst_pushback lst_remove lst_return_if lst_rev
 
 SRC_SORT    = fusion_merge_tab fusion_merge_chain_list
 
