@@ -55,6 +55,7 @@ int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
+bool				ft_isupper(int c);
 int					ft_tolower(int c);
 
 void				ft_strclr(char *s);
