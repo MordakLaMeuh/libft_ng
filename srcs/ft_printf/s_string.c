@@ -97,7 +97,7 @@ static int		s_wchar_t(t_args *args, t_status *op, int *utf8_size)
 	wchar_t		*wchar;
 
 	wchar = (wchar_t *)va_arg(op->ap, wchar_t *);
-	wchar = (wchar) ? wchar : L"(null)";
+	wchar = (wchar) ? wchar : (wchar_t *)L"(null)";
 	if (!(check_extended_string(wchar)))
 		return (-1);
 	len = get_wchar_t_size(wchar, args->p);

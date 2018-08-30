@@ -14,11 +14,6 @@
 # define INTERNAL_PRINTF_H
 
 # include <stdarg.h>
-# include <stdlib.h>
-# include <inttypes.h>
-# include <wchar.h>
-# include <unistd.h>
-# include <stdbool.h>
 
 # define MAX_BUF_LEN			4096
 
@@ -31,6 +26,17 @@ typedef short int				t_s_int;
 typedef long int				t_l_int;
 typedef long long int			t_ll_int;
 
+typedef unsigned int			size_t;
+typedef unsigned int			uintmax_t;
+typedef signed int				intmax_t;
+typedef signed int				wchar_t;
+typedef signed int				bool;
+
+# define false					0
+# define true					1
+# define NULL					0
+# define MB_CUR_MAX				4
+
 # define MASK7                                  0x0000007f
 # define MASK11                                 0x000007ff
 # define MASK16                                 0x0000ffff
@@ -42,7 +48,7 @@ typedef long long int			t_ll_int;
 # define HEXTABLE_MIN(x) 		"0123456789abcdef"[x]
 # define STDOUT 				1
 # define STDERR 				2
-# define MODIFIER_QUANTITY 		8
+# define MODIFIER_QUANTITY 		13
 # define FLAGS_QUANTITY 		5
 # define LENGTH_TYPE_QUANTITY	4
 # define SPECIFIERS_QUANTITY 	16
@@ -141,6 +147,6 @@ void							fflush_buffer(t_status *op);
 */
 
 void							s_char_wchar(t_args *args, t_status *op,
-												wchar_t c);
+								wchar_t c);
 
 #endif
