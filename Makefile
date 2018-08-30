@@ -19,7 +19,7 @@ SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_mem
 	ft_atoi ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower \
 	ft_strclr ft_striter ft_striteri \
 	ft_strequ ft_strnequ \
-	ft_putchar ft_putstr ft_putendl ft_putnbr \
+	ft_putchar ft_putstr ft_putendl ft_putnbr ft_putnbr_base \
 	ft_secure_atoi \
 	ft_aligned_memcpy ft_aligned_bzero
 
