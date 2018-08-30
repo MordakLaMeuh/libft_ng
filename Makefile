@@ -13,9 +13,7 @@ else
 	CFLAGS = -m32 -std=c99 -Wextra -Wall -O2 -fno-builtin -I./$(INCDIR) -fno-stack-protector
 endif
 
-SRC_USUALS = ft_memcpy ft_memset ft_bzero ft_strlen
-
-#SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
+SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
 	ft_strlen ft_strcpy ft_strncpy ft_strcat ft_strncat ft_strlcat \
 	ft_strchr ft_strrchr ft_strstr ft_strnstr ft_strcmp ft_strncmp \
 	ft_atoi ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower \

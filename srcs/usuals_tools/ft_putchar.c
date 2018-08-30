@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
+
+extern void putchar(char c);
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	putchar(c);
 }

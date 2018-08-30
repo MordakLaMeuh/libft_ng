@@ -13,9 +13,12 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include "i386_type.h"
+# include "i386_type.h"
+# include "i386_limit.h"
 
 # define HEX_T(x)	"0123456789ABCDEF"[x]
+
+# define NULL		0
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

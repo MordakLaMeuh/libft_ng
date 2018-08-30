@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+extern void putchar(char c);
+
 void	ft_putnbr(int n)
 {
 	int		exponent;
@@ -25,13 +27,13 @@ void	ft_putnbr(int n)
 	while ((i = i / 10))
 		exponent *= 10;
 	if (sign)
-		write(1, "-", 1);
+		putchar('-');
 	while (exponent)
 	{
 		i = n / exponent;
 		buff = (sign) ? HEX_T(-(i % 10)) : HEX_T((i % 10));
 		n -= i * exponent;
-		write(1, &buff, 1);
+		putchar(buff);
 		exponent /= 10;
 	}
 }
