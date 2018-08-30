@@ -8,12 +8,14 @@ OBJDIR	= objs
 HEADER	= libft.h btree.h
 
 ifeq ($(DEBUG),yes)
-	CFLAGS = -std=c99 -fPIC -Wextra -Wall -Werror -g -O0 -fsanitize=address -I./$(INCDIR)
+	CFLAGS = -m32 -std=c99 -Wextra -Wall -g -O0 -fsanitize=address -fno-builtin -I./$(INCDIR) -fno-stack-protector
 else
-	CFLAGS = -Ofast -std=c99 -fPIC -Wextra -Wall -Werror -I./$(INCDIR)
+	CFLAGS = -m32 -std=c99 -Wextra -Wall -O2 -fno-builtin -I./$(INCDIR) -fno-stack-protector
 endif
 
-SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
+SRC_USUALS = ft_memcpy ft_memset ft_bzero ft_strlen
+
+#SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
 	ft_strlen ft_strcpy ft_strncpy ft_strcat ft_strncat ft_strlcat \
 	ft_strchr ft_strrchr ft_strstr ft_strnstr ft_strcmp ft_strncmp \
 	ft_atoi ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower \
@@ -43,7 +45,7 @@ SRC_CHAINED	= lst_new lst_del_one lst_del lst_add lst_iter lst_map lst_invert_re
 
 SRC_SORT    = fusion_merge_tab fusion_merge_chain_list
 
-SRC_GNL     = gnl
+#SRC_GNL     = gnl
 
 USUALS_DIR	= usuals_tools
 PRINTF_DIR  = ft_printf
