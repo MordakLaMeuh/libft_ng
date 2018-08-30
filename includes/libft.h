@@ -13,11 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
-# include <stdint.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdbool.h>
+#include "i386_type.h"
 
 # define HEX_T(x)	"0123456789ABCDEF"[x]
 
