@@ -8,9 +8,9 @@ OBJDIR	= objs
 HEADER	= libft.h btree.h
 
 ifeq ($(DEBUG),yes)
-	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -g -O0 -fsanitize=address -fno-builtin -I./$(INCDIR) -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
+	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -g -O0 -fsanitize=address -I./$(INCDIR) -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
 else
-	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -O2 -fno-builtin -I./$(INCDIR) -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
+	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -O2 -I./$(INCDIR) -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
 endif
 
 SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
