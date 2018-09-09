@@ -3,15 +3,19 @@ CC = gcc
 
 LIBDIR	= ./
 SRCDIR	= srcs
-INCDIR	= includes
 OBJDIR	= objs
-HEADER	= libft.h btree.h
 
 ifeq ($(DEBUG),yes)
-	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -g -O0 -fsanitize=address -I./$(INCDIR) -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
+	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -g -O0
+	CFLAGS += -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
+	CFLAGS += -nostdinc
 else
-	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -I./$(INCDIR) -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
+	CFLAGS = -m32 -std=gnu99 -Wextra -Wall
+	CFLAGS += -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
+	CFLAGS += -nostdinc
 endif
+
+IFLAGS = -Iincludes
 
 SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
 	ft_strlen ft_strcpy ft_strncpy ft_strcat ft_strncat ft_strlcat \
@@ -67,19 +71,19 @@ $(NAME): $(OBJ) includes/libft.h includes/btree.h includes/chained_tools.h srcs/
 	ranlib $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(USUALS_DIR)/%.c includes/libft.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(PRINTF_DIR)/%.c srcs/ft_printf/internal_printf.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(SORT_DIR)/%.c includes/libft.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(BTREE_DIR)/%.c includes/btree.h srcs/binary_tree/btree_internal_header.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(CHAINED_DIR)/%.c includes/chained_tools.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
 clean:
 	rm -vf $(OBJ)
