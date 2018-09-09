@@ -13,11 +13,10 @@
 #ifndef SORT_TOOLS_H
 # define SORT_TOOLS_H
 
-# include <stdlib.h>
-# include <errno.h>
-
 # include "chained_tools.h"
 # include "custom_allocator.h"
+
+#define EINVAL		1
 
 # define FALSE		0
 # define TRUE		1
