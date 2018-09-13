@@ -16,8 +16,10 @@
 ** Recursive descent.
 */
 
-static void		insert_child(struct s_node *parent, struct s_node *new,
-				int (*cmpf)(void *, void *))
+static void	insert_child(
+		struct s_node *parent,
+		struct s_node *new,
+		int (*cmpf)(void *, void *))
 {
 	if (cmpf(new->content, parent->content) < 0)
 	{
@@ -94,9 +96,11 @@ struct s_node	*btree_insert_node_by_content(
 {
 	struct s_node *new;
 
-	if (root == NULL || content == NULL || cmpf == NULL || allocator == NULL)
+	if (root == NULL || content == NULL || cmpf == NULL
+			|| allocator == NULL)
 		return (NULL);
-	new = btree_internal_insert_node_content(root, content, cmpf, allocator);
+	new = btree_internal_insert_node_content(
+			root, content, cmpf, allocator);
 	if (new != NULL)
 		SET_BLACK(new);
 	return (new);

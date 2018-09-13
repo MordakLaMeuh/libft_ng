@@ -13,9 +13,9 @@
 #include "btree_internal_header.h"
 
 static struct s_node	*simulate_insert_child(
-		struct s_node *parent,
-		void *content,
-		int (*cmpf)(void *, void *))
+			struct s_node *parent,
+			void *content,
+			int (*cmpf)(void *, void *))
 {
 	int diff;
 
@@ -24,22 +24,24 @@ static struct s_node	*simulate_insert_child(
 		if (!parent->left)
 			return (parent);
 		else
-			return (simulate_insert_child(parent->left, content, cmpf));
+			return (simulate_insert_child(
+					parent->left, content, cmpf));
 	}
 	else if (diff > 0)
 	{
 		if (!parent->right)
 			return (parent);
 		else
-			return (simulate_insert_child(parent->right, content, cmpf));
+			return (simulate_insert_child(
+					parent->right, content, cmpf));
 	}
 	return (NULL);
 }
 
 static struct s_node	*no_root_case(
-		struct s_node **root,
-		void *content,
-		void *(*allocator)(size_t))
+			struct s_node **root,
+			void *content,
+			void *(*allocator)(size_t))
 {
 	struct s_node	*new;
 
@@ -54,10 +56,10 @@ static struct s_node	*no_root_case(
 }
 
 static struct s_node	*btree_collision_insert_node_content(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void *(*allocator)(size_t))
+			struct s_node **root,
+			void *content,
+			int (*cmpf)(void *, void *),
+			void *(*allocator)(size_t))
 {
 	struct s_node	*parent;
 	struct s_node	*new;
@@ -80,18 +82,19 @@ static struct s_node	*btree_collision_insert_node_content(
 	return (new);
 }
 
-struct s_node			*btree_smash_checker(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void *(*allocator)(size_t))
+struct s_node		*btree_smash_checker(
+			struct s_node **root,
+			void *content,
+			int (*cmpf)(void *, void *),
+			void *(*allocator)(size_t))
 {
 	struct s_node *new;
 	struct s_node *new_root;
 
 	if (root == NULL || cmpf == NULL || allocator == NULL)
 		return (NULL);
-	new = btree_collision_insert_node_content(root, content, cmpf, allocator);
+	new = btree_collision_insert_node_content(
+			root, content, cmpf, allocator);
 	if (new == NULL)
 		return (NULL);
 	new->color = RED;

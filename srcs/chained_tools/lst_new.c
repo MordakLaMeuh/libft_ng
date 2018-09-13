@@ -12,7 +12,7 @@
 
 #include "chained_tools.h"
 
-static void		*internal_memcpy(
+static void	*internal_memcpy(
 		void *restrict dst,
 		const void *restrict src,
 		size_t n)

@@ -24,7 +24,11 @@ static void		fill_from_tab(struct s_list *lst, void **t, int limit)
 	}
 }
 
-static void		merge_mod(void **s1, void **s2, void **end, struct s_info *w)
+static void		merge_mod(
+			void **s1,
+			void **s2,
+			void **end,
+			struct s_info *w)
 {
 	void **p_gr_1;
 	void **p_gr_2;
@@ -35,16 +39,20 @@ static void		merge_mod(void **s1, void **s2, void **end, struct s_info *w)
 		while (TRUE)
 		{
 			if (p_gr_2 < end)
-				*s2++ = w->cmp(*p_gr_2, *p_gr_1) ? *p_gr_1++ : *p_gr_2++;
+				*s2++ = w->cmp(*p_gr_2, *p_gr_1) ?
+						*p_gr_1++ : *p_gr_2++;
 			if (p_gr_1 == (s1 + w->offset))
 			{
-				while (p_gr_2 != (s1 + (2 * w->offset)) && p_gr_2 < end)
+				while (p_gr_2 != (s1 + (2 * w->offset))
+						&& p_gr_2 < end)
 					*s2++ = *p_gr_2++;
 				break ;
 			}
-			else if (p_gr_2 == (s1 + (2 * w->offset)) || p_gr_2 >= end)
+			else if (p_gr_2 == (s1 + (2 * w->offset))
+					|| p_gr_2 >= end)
 			{
-				while (p_gr_1 != (s1 + w->offset) && p_gr_1 < end)
+				while (p_gr_1 != (s1 + w->offset)
+						&& p_gr_1 < end)
 					*s2++ = *p_gr_1++;
 				break ;
 			}
@@ -53,7 +61,11 @@ static void		merge_mod(void **s1, void **s2, void **end, struct s_info *w)
 	}
 }
 
-static void		**exec(void **t1, void **t2, int l, int (*cmp)(void *, void *))
+static void		**exec(
+			void **t1,
+			void **t2,
+			int l,
+			int (*cmp)(void *, void *))
 {
 	struct s_info	w;
 	int				state;

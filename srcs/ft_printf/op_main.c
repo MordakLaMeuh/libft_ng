@@ -12,8 +12,11 @@
 
 #include "internal_printf.h"
 
-static int		extract_args(const char *restrict s, t_args *args, int *i,
-															t_status *op)
+static int	extract_args(
+		const char *restrict s,
+		t_args *args,
+		int *i,
+		t_status *op)
 {
 	ft_memset(args, 0, sizeof(t_args));
 	args->p = -1;
@@ -23,7 +26,7 @@ static int		extract_args(const char *restrict s, t_args *args, int *i,
 	return (1);
 }
 
-static void		osx_nospecifier(t_args *args, t_status *op, char c)
+static void	osx_nospecifier(t_args *args, t_status *op, char c)
 {
 	int size;
 
@@ -38,7 +41,7 @@ static void		osx_nospecifier(t_args *args, t_status *op, char c)
 	char_to_buffer(c, 1, op);
 }
 
-static int		add_args(t_status *op, int *i)
+static int	add_args(t_status *op, int *i)
 {
 	t_args args;
 
@@ -61,10 +64,10 @@ static int		add_args(t_status *op, int *i)
 	return (0);
 }
 
-int				new_chain(t_status *op)
+int		new_chain(t_status *op)
 {
-	int			i;
-	int			ret;
+	int	i;
+	int	ret;
 
 	i = 0;
 	while (op->s[i] != '\0')

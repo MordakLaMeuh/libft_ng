@@ -14,7 +14,7 @@
 
 extern void putchar(char c);
 
-void		ft_putnbr_base(int n, int base)
+void	ft_putnbr_base(int n, int base)
 {
 	int		exponent;
 	int		sign;

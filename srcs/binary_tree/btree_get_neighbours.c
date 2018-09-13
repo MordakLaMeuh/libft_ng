@@ -12,7 +12,7 @@
 
 #include "btree_internal_header.h"
 
-struct s_node			*btree_get_next_neighbours_node(struct s_node *node)
+struct s_node	*btree_get_next_neighbours_node(struct s_node *node)
 {
 	if (node == NULL)
 		return (NULL);
@@ -32,7 +32,7 @@ struct s_node			*btree_get_next_neighbours_node(struct s_node *node)
 	return (NULL);
 }
 
-struct s_node			*btree_get_prev_neighbours_node(struct s_node *node)
+struct s_node	*btree_get_prev_neighbours_node(struct s_node *node)
 {
 	if (node == NULL)
 		return (NULL);
@@ -52,7 +52,7 @@ struct s_node			*btree_get_prev_neighbours_node(struct s_node *node)
 	return (NULL);
 }
 
-void					*btree_get_next_neighbours_content(struct s_node *node)
+void		*btree_get_next_neighbours_content(struct s_node *node)
 {
 	struct s_node *res_node;
 
@@ -62,7 +62,7 @@ void					*btree_get_next_neighbours_content(struct s_node *node)
 	return (NULL);
 }
 
-void					*btree_get_prev_neighbours_content(struct s_node *node)
+void		*btree_get_prev_neighbours_content(struct s_node *node)
 {
 	struct s_node *res_node;
 

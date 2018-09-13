@@ -13,9 +13,9 @@
 #include "chained_tools.h"
 
 void	lst_del(
-		struct s_list **alst,
-		void (*del)(void *, size_t, void (*)(void *)),
-		void (*deallocator)(void *))
+	struct s_list **alst,
+	void (*del)(void *, size_t, void (*)(void *)),
+	void (*deallocator)(void *))
 {
 	struct s_list *current;
 	struct s_list *tmp;

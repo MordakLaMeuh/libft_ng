@@ -29,7 +29,7 @@ static int	recurse_level_count(struct s_node *root, int n)
 	return ((i > j) ? i : j);
 }
 
-int			btree_level_count(struct s_node *root)
+int		btree_level_count(struct s_node *root)
 {
 	if (!root)
 		return (0);

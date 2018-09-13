@@ -61,7 +61,7 @@ struct s_node	*btree_new(void);
 ** FAIL: -1 Null deallocator specified
 */
 
-int				btree_delete(struct s_node *root, void (*deallocator)(void *));
+int		btree_delete(struct s_node *root, void (*deallocator)(void *));
 
 /*
 ** Simple getter of size of a generic node.
@@ -69,7 +69,7 @@ int				btree_delete(struct s_node *root, void (*deallocator)(void *));
 ** sizeof(struct s_node)
 */
 
-size_t			btree_get_node_size(void);
+size_t		btree_get_node_size(void);
 
 /*
 ** Create a orphaned node associated with his own content.
@@ -86,7 +86,7 @@ struct s_node	*btree_create_node(void *content, void *(*allocator)(size_t));
 ** node->content
 */
 
-void			*btree_get_node_content(struct s_node *node);
+void		*btree_get_node_content(struct s_node *node);
 
 /*
 ** Check if similar value are generated.
@@ -114,7 +114,7 @@ struct s_node	*btree_smash_checker(
 ** FAIL: -EINVAL Null node sended
 */
 
-int				btree_attach_content(
+int		btree_attach_content(
 		struct s_node *node,
 		void *content,
 		void (*deallocator)(void *));
@@ -126,7 +126,7 @@ int				btree_attach_content(
 ** FAIL: -EINVAL Null node or Null deallocator sended
 */
 
-int				btree_destoy_node(
+int		btree_destoy_node(
 		struct s_node *node,
 		void (*deallocator)(void *));
 
@@ -137,7 +137,7 @@ int				btree_destoy_node(
 ** FAIL: -EINVAL Null node or Null deallocator or Null node content sended
 */
 
-int				btree_delete_node_content(
+int		btree_delete_node_content(
 		struct s_node *node,
 		void (*deallocator)(void *));
 
@@ -177,13 +177,13 @@ struct s_node	*btree_conditional_insert(
 ** FAIL: -EINVAL
 */
 
-int				btree_delete_node_by_content(
+int		btree_delete_node_by_content(
 		struct s_node **root,
 		void *content,
 		int (*cmpf)(void *, void *),
 		void (*deallocator)(void *));
 
-int				btree_delete_node(struct s_node **root, struct s_node *node,
+int		btree_delete_node(struct s_node **root, struct s_node *node,
 		void (*deallocator)(void *));
 
 /*
@@ -216,13 +216,13 @@ struct s_node	*btree_insert_rnb_node(
 ** FAIL: -EINVAL or -1 Mode to trash was not founded !
 */
 
-int				btree_delete_rnb_node_by_content(
+int		btree_delete_rnb_node_by_content(
 		struct s_node **root,
 		void *content,
 		int (*cmpf)(void *, void *),
 		void (*deallocator)(void *));
 
-int				btree_delete_rnb_node(
+int		btree_delete_rnb_node(
 		struct s_node **root,
 		struct s_node *node,
 		void (*deallocator)(void *));
@@ -242,7 +242,7 @@ int				btree_delete_rnb_node(
 ** FAIL: -EINVAL Null structure pointer sended ---
 */
 
-int				btree_check_rnb_property(struct s_node *root,
+int		btree_check_rnb_property(struct s_node *root,
 		struct s_rnb_tree_checker_result *result);
 
 /*
@@ -266,7 +266,7 @@ struct s_node	*btree_get_last_valid_node(
 		void *data_ref,
 		int (*cmpf)(void *, void *));
 
-void			*btree_get_last_valid_content(
+void		*btree_get_last_valid_content(
 		struct s_node *root,
 		void *data_ref,
 		int (*cmpf)(void *, void *));
@@ -275,16 +275,16 @@ struct s_node	*btree_get_next_neighbours_node(struct s_node *node);
 
 struct s_node	*btree_get_prev_neighbours_node(struct s_node *node);
 
-void			*btree_get_next_neighbours_content(struct s_node *node);
+void		*btree_get_next_neighbours_content(struct s_node *node);
 
-void			*btree_get_prev_neighbours_content(struct s_node *node);
+void		*btree_get_prev_neighbours_content(struct s_node *node);
 
 struct s_node	*btree_get_highest_node(struct s_node *node);
 struct s_node	*btree_get_lowest_node(struct s_node *node);
-void			*btree_get_highest_node_content(struct s_node *node);
-void			*btree_get_lowest_node_content(struct s_node *node);
+void		*btree_get_highest_node_content(struct s_node *node);
+void		*btree_get_lowest_node_content(struct s_node *node);
 
-int				btree_is_last_node(struct s_node *node);
+int		btree_is_last_node(struct s_node *node);
 /*
 ** Return a specified content or Fn equ similary.
 ** Return:
@@ -292,7 +292,7 @@ int				btree_is_last_node(struct s_node *node);
 ** FAIL: (NULL) If root or cmp fn are Null OR Not was not founded !
 */
 
-void			*btree_search_content(struct s_node *root, void *data_ref,
+void		*btree_search_content(struct s_node *root, void *data_ref,
 		int (*cmpf)(void *, void *));
 
 /*
@@ -303,11 +303,11 @@ void			*btree_search_content(struct s_node *root, void *data_ref,
 ** FAIL: -EINVAL Null function pointer sended --
 */
 
-int				btree_apply_infix(struct s_node *root,
+int		btree_apply_infix(struct s_node *root,
 		void (*applyf)(void *));
-int				btree_apply_prefix(struct s_node *root,
+int		btree_apply_prefix(struct s_node *root,
 		void (*applyf)(void *));
-int				btree_apply_suffix(struct s_node *root,
+int		btree_apply_suffix(struct s_node *root,
 		void (*applyf)(void *));
 
 /*
@@ -318,18 +318,22 @@ int				btree_apply_suffix(struct s_node *root,
 ** FAIL: -EINVAL Null root sended ---
 */
 
-int				btree_check_binary_tree(
+int		btree_check_binary_tree(
 		struct s_node *root, int (*applyf)(void *));
 
 /*
 ** --- Some extra functions for binary tree ---
 */
 
-int				btree_memory_move(void *dest, struct s_node *src_node);
+int		btree_memory_move(void *dest, struct s_node *src_node);
 
-int				btree_apply_by_level(struct s_node *root,
-		void (*applyf)(void *content, int current_level, int first_elem));
+int		btree_apply_by_level(
+		struct s_node *root,
+		void (*applyf)(
+				void *content,
+				int current_level,
+				int first_elem));
 
-int				btree_level_count(struct s_node *root);
+int		btree_level_count(struct s_node *root);
 
 #endif

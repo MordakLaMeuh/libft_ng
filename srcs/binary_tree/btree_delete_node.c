@@ -17,8 +17,8 @@
 */
 
 static struct s_node	*two_childs_case(
-	struct s_node *node,
-	struct s_node **sibling)
+			struct s_node *node,
+			struct s_node **sibling)
 {
 	struct s_node	*high_form_left;
 	struct s_node	*child;
@@ -47,9 +47,9 @@ static struct s_node	*two_childs_case(
 */
 
 static struct s_node	*one_child_case(
-	struct s_node *node,
-	struct s_node **root,
-	struct s_node **sibling)
+			struct s_node *node,
+			struct s_node **root,
+			struct s_node **sibling)
 {
 	struct s_node	*child;
 
@@ -76,10 +76,10 @@ static struct s_node	*one_child_case(
 ** And the third is implicitely no child case.
 */
 
-struct s_node			*btree_internal_trash_node(
-		struct s_node *node,
-		struct s_node **root,
-		struct s_node **sibling)
+struct s_node		*btree_internal_trash_node(
+			struct s_node *node,
+			struct s_node **root,
+			struct s_node **sibling)
 {
 	struct s_node *parent;
 
@@ -107,11 +107,11 @@ struct s_node			*btree_internal_trash_node(
 ** int ret = tree_delete_node(&tree, ptr, &intcmp, &free);
 */
 
-int						btree_delete_node_by_content(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void (*deallocator)(void *))
+int			btree_delete_node_by_content(
+			struct s_node **root,
+			void *content,
+			int (*cmpf)(void *, void *),
+			void (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
 
@@ -120,7 +120,8 @@ int						btree_delete_node_by_content(
 	node_to_trash = btree_get_node_by_content(*root, content, cmpf);
 	if (node_to_trash)
 	{
-		node_to_trash = btree_internal_trash_node(node_to_trash, root, NULL);
+		node_to_trash = btree_internal_trash_node(
+				node_to_trash, root, NULL);
 		deallocator(node_to_trash);
 	}
 	else
@@ -128,10 +129,10 @@ int						btree_delete_node_by_content(
 	return (0);
 }
 
-int						btree_delete_node(
-		struct s_node **root,
-		struct s_node *node,
-		void (*deallocator)(void *))
+int			btree_delete_node(
+			struct s_node **root,
+			struct s_node *node,
+			void (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
 

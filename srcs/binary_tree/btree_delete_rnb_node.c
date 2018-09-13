@@ -12,11 +12,11 @@
 
 #include "btree_internal_header.h"
 
-int				btree_delete_rnb_node_by_content(
-				struct s_node **root,
-				void *content,
-				int (*cmpf)(void *, void *),
-				void (*deallocator)(void *))
+int	btree_delete_rnb_node_by_content(
+	struct s_node **root,
+	void *content,
+	int (*cmpf)(void *, void *),
+	void (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
 	struct s_node *sibling;
@@ -37,10 +37,10 @@ int				btree_delete_rnb_node_by_content(
 	return (0);
 }
 
-int				btree_delete_rnb_node(
-				struct s_node **root,
-				struct s_node *node,
-				void (*deallocator)(void *))
+int	btree_delete_rnb_node(
+	struct s_node **root,
+	struct s_node *node,
+	void (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
 	struct s_node *sibling;

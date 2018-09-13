@@ -21,7 +21,7 @@ enum	e_color {
 	DOUBLE_BLACK
 };
 
-# define EINVAL				1
+# define EINVAL			1
 
 # define IS_RED(node)		(node && node->color == RED)
 # define IS_BLACK(node)		(node == NULL || node->color == BLACK)
@@ -54,9 +54,9 @@ struct s_node	*btree_internal_trash_node(
 		struct s_node **root,
 		struct s_node **sibling);
 
-void			apply_insert_strategy(struct s_node *new);
+void		apply_insert_strategy(struct s_node *new);
 
-void			apply_delete_strategy(
+void		apply_delete_strategy(
 		struct s_node *trash,
 		struct s_node **root,
 		struct s_node *sibling);
@@ -65,19 +65,19 @@ void			apply_delete_strategy(
 ** Internal use.
 */
 
-void			btree_rotate_right(struct s_node *n);
-void			btree_rotate_left(struct s_node *n);
+void		btree_rotate_right(struct s_node *n);
+void		btree_rotate_left(struct s_node *n);
 
 struct s_node	*btree_get_parent(struct s_node *n);
 struct s_node	*btree_get_grandparent(struct s_node *n);
 struct s_node	*btree_get_sibling(struct s_node *n);
 struct s_node	*btree_get_uncle(struct s_node *n);
 
-void			minor_rotations_case(
+void		minor_rotations_case(
 		struct s_node *sibling,
 		struct s_node **root);
 
-void			major_rotations_case(
+void		major_rotations_case(
 		struct s_node *sibling,
 		struct s_node **root);
 

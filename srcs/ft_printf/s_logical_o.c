@@ -21,15 +21,20 @@ static void		f_o(char *s, uintmax_t n, int size)
 	}
 }
 
-static void		buffer_o(uintmax_t n, t_args *args, int *params, t_status *op)
+static void		buffer_o(
+			uintmax_t n,
+			t_args *args,
+			int *params,
+			t_status *op)
 {
 	int		flag_0;
 	int		left_justify;
 	int		start_n;
-	char	buf[params[1]];
+	char		buf[params[1]];
 
 	left_justify = (args->b & MINUS) ? 1 : 0;
-	flag_0 = ((args->b & ZERO) && (args->p == -1) && (!(left_justify))) ? 1 : 0;
+	flag_0 = ((args->b & ZERO) && (args->p == -1) && (!(left_justify))) ?
+			1 : 0;
 	start_n = (left_justify) ? 0 : params[1] - params[0];
 	if (left_justify)
 		ft_memset(buf + params[0], ' ', params[1] - params[0]);
@@ -46,11 +51,11 @@ static void		buffer_o(uintmax_t n, t_args *args, int *params, t_status *op)
 	string_to_buffer(buf, params[1], op);
 }
 
-int				s_logical_o(t_args *args, t_status *op)
+int			s_logical_o(t_args *args, t_status *op)
 {
 	uintmax_t	n;
 	uintmax_t	i;
-	int			params[2];
+	int		params[2];
 
 	n = va_arg(op->ap, uintmax_t);
 	cast_u(&n, args->l);

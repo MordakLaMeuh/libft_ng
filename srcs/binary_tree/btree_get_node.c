@@ -12,8 +12,10 @@
 
 #include "btree_internal_header.h"
 
-void			*btree_search_content(struct s_node *root, void *data_ref,
-							int (*cmpf)(void *, void *))
+void		*btree_search_content(
+		struct s_node *root,
+		void *data_ref,
+		int (*cmpf)(void *, void *))
 {
 	int diff;
 
@@ -32,7 +34,7 @@ struct s_node	*btree_get_node_by_content(
 		void *data_ref,
 		int (*cmpf)(void *, void *))
 {
-	int				diff;
+	int diff;
 
 	if (root == NULL || cmpf == NULL)
 		return (NULL);

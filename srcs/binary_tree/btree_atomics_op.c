@@ -28,7 +28,7 @@ struct s_node	*btree_create_node(void *content, void *(*allocator)(size_t))
 	return (new);
 }
 
-int				btree_destoy_node(
+int		btree_destoy_node(
 		struct s_node *node,
 		void (*deallocator)(void *))
 {
@@ -38,7 +38,7 @@ int				btree_destoy_node(
 	return (0);
 }
 
-int				btree_attach_content(
+int		btree_attach_content(
 		struct s_node *node,
 		void *content,
 		void (*deallocator)(void *))
@@ -51,14 +51,14 @@ int				btree_attach_content(
 	return (0);
 }
 
-void			*btree_get_node_content(struct s_node *node)
+void		*btree_get_node_content(struct s_node *node)
 {
 	if (node)
 		return (node->content);
 	return (NULL);
 }
 
-int				btree_delete_node_content(
+int		btree_delete_node_content(
 		struct s_node *node,
 		void (*deallocator)(void *))
 {

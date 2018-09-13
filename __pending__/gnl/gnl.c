@@ -48,8 +48,12 @@ static int		s_exec(
 	while (true)
 	{
 		if ((index->buff_size < 1) &&
-		(index->buff_size = read(index->fd, index->buffer, BUFF_SIZE)) <= 0)
-			return ((index->buff_size == 0 && *line) ? 1 : index->buff_size);
+		(index->buff_size = read(
+				index->fd,
+				index->buffer,
+				BUFF_SIZE)) <= 0)
+			return ((index->buff_size == 0 && *line)
+					? 1 : index->buff_size);
 		index->buffer[index->buff_size] = '\0';
 		if ((jump_location = ft_strchr(index->buffer, '\n')))
 			break ;

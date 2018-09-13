@@ -32,14 +32,18 @@ static void		f_i(char *s, intmax_t n, int size)
 	}
 }
 
-static void		buffer_i(intmax_t n, int *size, t_args *args, t_status *op)
+static void		buffer_i(
+			intmax_t n,
+			int *size,
+			t_args *args,
+			t_status *op)
 {
 	int		x;
 	int		flag_0;
-	char	buf[size[1]];
+	char		buf[size[1]];
 
 	flag_0 = ((args->b & ZERO) && (!(args->b & MINUS)) && args->p == -1) ?
-																		1 : 0;
+			1 : 0;
 	x = ((n < 0) || (args->b & PLUS) || (args->b & SPACE)) ? 1 : 0;
 	if (args->b & MINUS)
 		ft_memset(buf + size[0] + x, ' ', size[1] - size[0] - x);
@@ -47,21 +51,24 @@ static void		buffer_i(intmax_t n, int *size, t_args *args, t_status *op)
 		ft_memset(buf + ((flag_0 && x) ? 1 : 0),
 			flag_0 ? '0' : ' ', size[1] - size[0] - x);
 	if (n < 0)
-		buf[(flag_0 || (args->b & MINUS)) ? 0 : size[1] - size[0] - 1] = '-';
+		buf[(flag_0 || (args->b & MINUS)) ?
+				0 : size[1] - size[0] - 1] = '-';
 	else if (args->b & PLUS)
-		buf[(flag_0 || (args->b & MINUS)) ? 0 : size[1] - size[0] - 1] = '+';
+		buf[(flag_0 || (args->b & MINUS)) ?
+				0 : size[1] - size[0] - 1] = '+';
 	else if (args->b & SPACE)
-		buf[(flag_0 || (args->b & MINUS)) ? 0 : size[1] - size[0] - 1] = ' ';
+		buf[(flag_0 || (args->b & MINUS)) ?
+				0 : size[1] - size[0] - 1] = ' ';
 	f_i(buf + ((args->b & MINUS) ? x : size[1] - size[0]), n, size[0]);
 	string_to_buffer(buf, size[1], op);
 }
 
-int				s_numeric_i(t_args *args, t_status *op)
+int			s_numeric_i(t_args *args, t_status *op)
 {
 	intmax_t	n;
 	intmax_t	i;
-	int			size[2];
-	int			x;
+	int		size[2];
+	int		x;
 
 	n = va_arg(op->ap, intmax_t);
 	cast_i(&n, args->l);

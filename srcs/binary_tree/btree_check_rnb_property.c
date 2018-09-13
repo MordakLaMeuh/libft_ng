@@ -12,7 +12,7 @@
 
 #include "btree_internal_header.h"
 
-static void		btree_suffix_test_homogenetic_black(
+static void	btree_suffix_test_homogenetic_black(
 		struct s_node *node,
 		int level,
 		enum e_check_result *homogenetic_black)
@@ -44,7 +44,7 @@ static void		btree_suffix_test_homogenetic_black(
 	}
 }
 
-static void		btree_suffix_test_filiation(
+static void	btree_suffix_test_filiation(
 		struct s_node *node,
 		struct s_node *root,
 		struct s_node *parent,
@@ -55,15 +55,17 @@ static void		btree_suffix_test_filiation(
 		if (node == root && node->parent != NULL)
 			*filiation = FAILED;
 		if (node->left)
-			btree_suffix_test_filiation(node->left, root, node, filiation);
+			btree_suffix_test_filiation(
+					node->left, root, node, filiation);
 		if (node->right)
-			btree_suffix_test_filiation(node->right, root, node, filiation);
+			btree_suffix_test_filiation(
+					node->right, root, node, filiation);
 		if (node->parent != parent)
 			*filiation = FAILED;
 	}
 }
 
-static int		btree_suffix_count_nodes(struct s_node *node)
+static int	btree_suffix_count_nodes(struct s_node *node)
 {
 	int n;
 
@@ -79,18 +81,21 @@ static int		btree_suffix_count_nodes(struct s_node *node)
 	return (0);
 }
 
-static void		btree_suffix_check_red_black_interlacement(
+static void	btree_suffix_check_red_black_interlacement(
 		struct s_node *node,
 		struct s_node *root,
 		enum e_check_result *rnb_interlacement)
 {
 	if (node)
 	{
-		if (node->color == RED && node->parent && node->parent->color != BLACK)
+		if (node->color == RED && node->parent
+				&& node->parent->color != BLACK)
 			*rnb_interlacement = FAILED;
-		if (node->color == RED && node->left && node->left->color != BLACK)
+		if (node->color == RED && node->left
+				&& node->left->color != BLACK)
 			*rnb_interlacement = FAILED;
-		if (node->color == RED && node->right && node->right->color != BLACK)
+		if (node->color == RED && node->right
+				&& node->right->color != BLACK)
 			*rnb_interlacement = FAILED;
 		if (node->left)
 			btree_suffix_check_red_black_interlacement(node->left,
@@ -101,7 +106,7 @@ static void		btree_suffix_check_red_black_interlacement(
 	}
 }
 
-int				btree_check_rnb_property(struct s_node *root,
+int		btree_check_rnb_property(struct s_node *root,
 		struct s_rnb_tree_checker_result *result)
 {
 	if (result == NULL)
@@ -117,7 +122,8 @@ int				btree_check_rnb_property(struct s_node *root,
 	if (root->color != BLACK)
 		result->root_is_black = FAILED;
 	btree_suffix_test_filiation(root, root, NULL, &result->filiation);
-	btree_suffix_test_homogenetic_black(root, -1, &result->homogenetic_black);
+	btree_suffix_test_homogenetic_black(
+			root, -1, &result->homogenetic_black);
 	btree_suffix_check_red_black_interlacement(
 		root,
 		root,

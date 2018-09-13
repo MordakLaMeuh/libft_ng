@@ -16,15 +16,15 @@
 # include "chained_tools.h"
 # include "custom_allocator.h"
 
-#define EINVAL		1
+#define EINVAL	1
 
-# define FALSE		0
-# define TRUE		1
+# define FALSE	0
+# define TRUE	1
 
-struct	s_info
+struct s_info
 {
-	int			offset;
-	int			(*cmp)(void *, void *);
+	int	offset;
+	int	(*cmp)(void *, void *);
 };
 
 int		fusion_merge_chain_list(

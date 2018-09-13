@@ -12,7 +12,7 @@
 
 #include "chained_tools.h"
 
-struct s_list		*lst_invert_it(struct s_list **alst)
+struct s_list	*lst_invert_it(struct s_list **alst)
 {
 	struct s_list *p;
 	struct s_list *c;

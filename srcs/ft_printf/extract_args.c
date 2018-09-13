@@ -64,7 +64,8 @@ static int		p_extract_length(const char *restrict s, t_args *args)
 				if (args->l && ((args->l > LEVEL1) ||
 					(args->l != g_length[i].value)))
 					args->l = 0;
-				args->l |= ((args->l & LEVEL1)) ? MAJOR : g_length[i].value;
+				args->l |= ((args->l & LEVEL1)) ?
+						MAJOR : g_length[i].value;
 				break ;
 			}
 		if (i == LENGTH_TYPE_QUANTITY)
@@ -73,8 +74,11 @@ static int		p_extract_length(const char *restrict s, t_args *args)
 	return (s - origin);
 }
 
-static void		p_extract_wildcard_w(char next, int *i, t_status *op,
-															t_args *args)
+static void		p_extract_wildcard_w(
+			char next,
+			int *i,
+			t_status *op,
+			t_args *args)
 {
 	int x;
 
@@ -99,8 +103,11 @@ static void		p_extract_wildcard_p(int *i, t_status *op, t_args *args)
 		args->p = -1;
 }
 
-static void		p_extract_all_stuff(const char *restrict s, t_args *args,
-													int *i, t_status *op)
+static void		p_extract_all_stuff(
+			const char *restrict s,
+			t_args *args,
+			int *i,
+			t_status *op)
 {
 	int j;
 
@@ -127,8 +134,11 @@ static void		p_extract_all_stuff(const char *restrict s, t_args *args,
 		*i += j;
 }
 
-void			get_args(const char *restrict s, int *i, t_args *args,
-															t_status *op)
+void			get_args(
+			const char *restrict s,
+			int *i,
+			t_args *args,
+			t_status *op)
 {
 	int j;
 	int base;
@@ -151,7 +161,8 @@ void			get_args(const char *restrict s, int *i, t_args *args,
 			{
 				(*i)++;
 				args->f = g_sp_list[j].f;
-				args->l = (g_sp_list[j].sp_len) ? g_sp_list[j].sp_len : args->l;
+				args->l = (g_sp_list[j].sp_len) ?
+						g_sp_list[j].sp_len : args->l;
 				return ;
 			}
 	}

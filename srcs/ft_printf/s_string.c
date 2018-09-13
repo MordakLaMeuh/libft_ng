@@ -92,8 +92,8 @@ static void		fill_wchar(wchar_t c, char tmp[4], int size)
 static int		s_wchar_t(t_args *args, t_status *op, int *utf8_size)
 {
 	char		tmp[4];
-	int			len;
-	int			l;
+	int		len;
+	int		l;
 	wchar_t		*wchar;
 
 	wchar = (wchar_t *)va_arg(op->ap, wchar_t *);
@@ -107,7 +107,8 @@ static int		s_wchar_t(t_args *args, t_status *op, int *utf8_size)
 	l = 0;
 	while (*wchar)
 	{
-		fill_wchar(*wchar, tmp, *utf8_size = get_size_for_string(*wchar));
+		fill_wchar(*wchar, tmp, *utf8_size =
+				get_size_for_string(*wchar));
 		if ((l += *utf8_size) > len)
 			break ;
 		string_to_buffer(tmp + (4 - *utf8_size), *utf8_size, op);
@@ -118,9 +119,9 @@ static int		s_wchar_t(t_args *args, t_status *op, int *utf8_size)
 	return (0);
 }
 
-int				s_string(t_args *args, t_status *op)
+int			s_string(t_args *args, t_status *op)
 {
-	int			size;
+	int		size;
 	char		*str;
 
 	if (args->l & L)

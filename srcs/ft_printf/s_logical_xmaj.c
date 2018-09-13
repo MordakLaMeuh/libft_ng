@@ -21,8 +21,10 @@ static void		f_xmaj(char *s, uintmax_t n, int size)
 	}
 }
 
-static void		buffer_xmaj(uintmax_t n, t_args *args, int *params,
-														t_status *op)
+static void		buffer_xmaj(uintmax_t n,
+			t_args *args,
+			int *params,
+			t_status *op)
 {
 	int		x;
 	int		flag_0;
@@ -34,26 +36,31 @@ static void		buffer_xmaj(uintmax_t n, t_args *args, int *params,
 		args->p == -1) ? 1 : 0;
 	x = ((n != 0) && (args->b & HASH)) ? 2 : 0;
 	if (left_justify)
-		ft_memset(buf + (params[0] + x), ' ', params[1] - params[0] - x);
+		ft_memset(
+				buf + (params[0] + x),
+				' ',
+				params[1] - params[0] - x);
 	else
 		ft_memset(buf + ((flag_0 && x) ? 2 : 0), flag_0 ? '0' : ' ',
 			params[1] - params[0] - x);
 	if (x)
 	{
-		buf[(flag_0 || left_justify) ? 0 : params[1] - params[0] - 2] = '0';
-		buf[(flag_0 || left_justify) ? 1 : params[1] - params[0] - 1] = 'X';
+		buf[(flag_0 || left_justify) ?
+				0 : params[1] - params[0] - 2] = '0';
+		buf[(flag_0 || left_justify) ?
+				1 : params[1] - params[0] - 1] = 'X';
 	}
-	f_xmaj(buf + ((left_justify) ? x : params[1] - params[0]), n,
-																params[0]);
+	f_xmaj(buf + ((left_justify) ?
+			x : params[1] - params[0]), n, params[0]);
 	string_to_buffer(buf, params[1], op);
 }
 
-int				s_logical_xmaj(t_args *args, t_status *op)
+int			s_logical_xmaj(t_args *args, t_status *op)
 {
 	uintmax_t	n;
 	uintmax_t	i;
-	int			params[2];
-	int			x;
+	int		params[2];
+	int		x;
 
 	n = va_arg(op->ap, uintmax_t);
 	cast_u(&n, args->l);

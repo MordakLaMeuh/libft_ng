@@ -14,7 +14,7 @@
 
 typedef unsigned int u32;
 
-static void		*btree_aligned_memcpy_four(
+static void	*btree_aligned_memcpy_four(
 	void *restrict dst,
 	const void *restrict src,
 	size_t n)
@@ -32,10 +32,10 @@ static void		*btree_aligned_memcpy_four(
 	return (dst);
 }
 
-int				btree_memory_move(void *dest, struct s_node *src_node)
+int		btree_memory_move(void *dest, struct s_node *src_node)
 {
 	struct s_node	*dest_node;
-	int				parent_position;
+	int		parent_position;
 
 	if (src_node == NULL || dest == NULL)
 		return (-EINVAL);

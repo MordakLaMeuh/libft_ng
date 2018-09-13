@@ -21,7 +21,7 @@ static struct s_list	*invert(struct s_list **alst, struct s_list *ptr)
 	return (ptr);
 }
 
-struct s_list			*lst_invert_rec(struct s_list **alst)
+struct s_list		*lst_invert_rec(struct s_list **alst)
 {
 	invert(alst, *alst)->next = NULL;
 	return (*alst);

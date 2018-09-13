@@ -35,7 +35,8 @@ struct s_node	*btree_insert_rnb_node_by_content(
 
 	if (root == NULL || cmpf == NULL || allocator == NULL)
 		return (NULL);
-	new = btree_internal_insert_node_content(root, content, cmpf, allocator);
+	new = btree_internal_insert_node_content(
+			root, content, cmpf, allocator);
 	if (new == NULL)
 		return (NULL);
 	SET_RED(new);

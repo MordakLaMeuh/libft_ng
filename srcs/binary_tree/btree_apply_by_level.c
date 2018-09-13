@@ -12,7 +12,7 @@
 
 #include "btree_internal_header.h"
 
-static int		p_recurse_level_count(struct s_node *root, int n)
+static int	p_recurse_level_count(struct s_node *root, int n)
 {
 	int i;
 	int j;
@@ -29,8 +29,14 @@ static int		p_recurse_level_count(struct s_node *root, int n)
 	return ((i > j) ? i : j);
 }
 
-static void		rec_level(struct s_node *root, void (*applyf)(void *content,
-		int current_level, int first_elem), int lvl, int *cap)
+static void	rec_level(
+		struct s_node *root,
+		void (*applyf)(
+				void *content,
+				int current_level,
+				int first_elem),
+		int lvl,
+		int *cap)
 {
 	if (lvl == *cap || lvl == -(*cap))
 	{
@@ -49,8 +55,12 @@ static void		rec_level(struct s_node *root, void (*applyf)(void *content,
 		rec_level(root->right, applyf, lvl + 1, cap);
 }
 
-int				btree_apply_by_level(struct s_node *root,
-		void (*applyf)(void *content, int current_level, int first_elem))
+int		btree_apply_by_level(
+		struct s_node *root,
+		void (*applyf)(
+				void *content,
+				int current_level,
+				int first_elem))
 {
 	int deep;
 	int i;

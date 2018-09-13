@@ -21,11 +21,15 @@ static void		f_u(char *s, uintmax_t n, int size)
 	}
 }
 
-static void		buffer_u(uintmax_t n, int *size, t_args *args, t_status *op)
+static void		buffer_u(
+			uintmax_t n,
+			int *size,
+			t_args *args,
+			t_status *op)
 {
 	int		i;
 	int		j;
-	char	buf[size[1]];
+	char		buf[size[1]];
 
 	if (args->b & MINUS)
 	{
@@ -49,9 +53,9 @@ static void		buffer_u(uintmax_t n, int *size, t_args *args, t_status *op)
 	string_to_buffer(buf, size[1], op);
 }
 
-int				s_numeric_u(t_args *args, t_status *op)
+int			s_numeric_u(t_args *args, t_status *op)
 {
-	int			size[2];
+	int		size[2];
 	uintmax_t	n;
 	uintmax_t	i;
 

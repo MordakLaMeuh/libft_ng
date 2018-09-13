@@ -42,7 +42,7 @@ struct s_node	*btree_get_lowest_node(struct s_node *node)
 ** Logically, if the tree is okay, highest item is in far right sector.
 */
 
-void			*btree_get_highest_node_content(struct s_node *node)
+void		*btree_get_highest_node_content(struct s_node *node)
 {
 	if (node == NULL)
 		return (NULL);

@@ -12,7 +12,7 @@
 
 #include "btree_internal_header.h"
 
-static void		do_rotation(struct s_node *new, struct s_node *parent)
+static void	do_rotation(struct s_node *new, struct s_node *parent)
 {
 	struct s_node *grandparent;
 
@@ -41,7 +41,7 @@ static void		do_rotation(struct s_node *new, struct s_node *parent)
 	SET_RED(grandparent);
 }
 
-void			apply_insert_strategy(struct s_node *new)
+void		apply_insert_strategy(struct s_node *new)
 {
 	struct s_node *uncle;
 	struct s_node *parent;

@@ -16,7 +16,7 @@
 ** The DB_BLACK stay and we found it a new sibling
 */
 
-void			sibling_is_red(struct s_node **sibling, struct s_node **root)
+void		sibling_is_red(struct s_node **sibling, struct s_node **root)
 {
 	struct s_node *parent;
 
@@ -45,7 +45,7 @@ void			sibling_is_red(struct s_node **sibling, struct s_node **root)
 ** XXX Norm incomplete. We need to throw an exception if fail after if-else.
 */
 
-void			minor_rotations_case(
+void		minor_rotations_case(
 		struct s_node *sibling,
 		struct s_node **root)
 {
@@ -68,7 +68,7 @@ void			minor_rotations_case(
 	}
 }
 
-void			major_rotations_case(
+void		major_rotations_case(
 		struct s_node *sibling,
 		struct s_node **root)
 {
@@ -97,7 +97,7 @@ void			major_rotations_case(
 		*root = sibling;
 }
 
-static void		loop(
+static void	loop(
 		struct s_node *trash,
 		struct s_node **root,
 		struct s_node *sibling)
@@ -120,8 +120,10 @@ static void		loop(
 				else if (trash != *root)
 				{
 					SET_DB_BLACK(trash);
-					sibling = (trash->parent->left != trash) ?
-							trash->parent->left : trash->parent->right;
+					if (trash->parent->left != trash)
+						sibling = trash->parent->left;
+					else
+						sibling = trash->parent->right;
 				}
 			}
 		}
@@ -129,10 +131,10 @@ static void		loop(
 			sibling_is_red(&sibling, root);
 }
 
-void			apply_delete_strategy(
-	struct s_node *trash,
-	struct s_node **root,
-	struct s_node *sibling)
+void		apply_delete_strategy(
+		struct s_node *trash,
+		struct s_node **root,
+		struct s_node *sibling)
 {
 	struct s_node *trash_child;
 
@@ -142,7 +144,8 @@ void			apply_delete_strategy(
 	{
 		if (trash->left || trash->right)
 		{
-			trash_child = (trash->left) ? trash->left : trash->right;
+			trash_child = (trash->left) ?
+					trash->left : trash->right;
 			if (IS_RED(trash_child))
 				SET_BLACK(trash_child);
 			else

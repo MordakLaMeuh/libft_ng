@@ -13,10 +13,10 @@
 #include "btree_internal_header.h"
 
 static struct s_node	*simulate_insert_node(
-		struct s_node *node,
-		void *content,
-		int (*cmpf)(void *, void *),
-		enum e_node_register *reg)
+			struct s_node *node,
+			void *content,
+			int (*cmpf)(void *, void *),
+			enum e_node_register *reg)
 {
 	int diff;
 
@@ -40,17 +40,18 @@ static struct s_node	*simulate_insert_node(
 	return (node);
 }
 
-struct s_node			*btree_conditional_insert(
-		struct s_node **root,
-		void *content,
-		int (*cmpf)(void *, void *),
-		void *(*allocator)(size_t))
+struct s_node		*btree_conditional_insert(
+			struct s_node **root,
+			void *content,
+			int (*cmpf)(void *, void *),
+			void *(*allocator)(size_t))
 {
 	struct s_node			*new;
 	struct s_node			*parent;
 	enum e_node_register	reg;
 
-	if (root == NULL || cmpf == NULL || content == NULL || allocator == NULL)
+	if (root == NULL || cmpf == NULL || content == NULL
+			|| allocator == NULL)
 		return (NULL);
 	if (*root == NULL)
 	{

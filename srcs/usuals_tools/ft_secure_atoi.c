@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int		secure_mul(int a, int b, bool *error)
+static int	secure_mul(int a, int b, bool *error)
 {
 	if (a > INT_MAX / b)
 		*error = true;
@@ -25,7 +25,7 @@ static int		secure_mul(int a, int b, bool *error)
 	return (a * b);
 }
 
-static int		secure_add(int a, int b, bool *error)
+static int	secure_add(int a, int b, bool *error)
 {
 	if ((a > 0) && (b > INT_MAX - a))
 		*error = true;
@@ -34,7 +34,7 @@ static int		secure_add(int a, int b, bool *error)
 	return (a + b);
 }
 
-int				ft_secure_atoi(const char *nptr, bool *error)
+int		ft_secure_atoi(const char *nptr, bool *error)
 {
 	int result;
 	int sign;

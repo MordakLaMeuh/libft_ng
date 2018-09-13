@@ -28,7 +28,9 @@ static int	apply_infix_ret(struct s_node *root, int (*applyf)(void *))
 	return (ret);
 }
 
-int			btree_check_binary_tree(struct s_node *root, int (*applyf)(void *))
+int		btree_check_binary_tree(
+		struct s_node *root,
+		int (*applyf)(void *))
 {
 	if (applyf == NULL)
 		return (-EINVAL);
