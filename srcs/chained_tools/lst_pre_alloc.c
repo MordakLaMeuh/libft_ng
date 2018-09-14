@@ -5,7 +5,7 @@ struct s_list	*lst_pre_alloc(
 		struct s_list **alst,
 		size_t len,
 		void *(*allocator)(size_t),
-		void (*deallocator)(void *))
+		int (*deallocator)(void *))
 {
 	struct s_list *m;
 

@@ -1,7 +1,7 @@
 
 #include "chained_tools.h"
 
-static void	del_elem(void *elem, size_t size, void (*deallocator)(void *))
+static void	del_elem(void *elem, size_t size, int (*deallocator)(void *))
 {
 	(void)size;
 	deallocator(elem);
@@ -11,7 +11,7 @@ static void	del_elem(void *elem, size_t size, void (*deallocator)(void *))
 struct s_list	*lst_map(
 		struct s_list *lst,
 		struct s_list *(*f)(struct s_list *elem),
-		void (*deallocator)(void *))
+		int (*deallocator)(void *))
 {
 	struct s_list *current;
 	struct s_list *elem;

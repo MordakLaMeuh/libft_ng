@@ -18,17 +18,17 @@ struct s_list		*lst_new(
 			void const *content,
 			size_t content_size,
 			void *(*allocator)(size_t),
-			void (*deallocator)(void *));
+			int (*deallocator)(void *));
 
 void			lst_del_one(
 			struct s_list **alst,
 			void (*del)(void *, size_t),
-			void (*deallocator)(void *));
+			int (*deallocator)(void *));
 
 void			lst_del(
 			struct s_list **alst,
-			void (*del)(void *, size_t, void (*)(void *)),
-			void (*deallocator)(void *));
+			void (*del)(void *, size_t, int (*)(void *)),
+			int (*deallocator)(void *));
 
 void			lst_add(struct s_list **alst, struct s_list *new);
 
@@ -39,7 +39,7 @@ void			lst_iter(
 struct s_list		*lst_map(
 			struct s_list *lst,
 			struct s_list *(*f)(struct s_list *elem),
-			void (*deallocator)(void *));
+			int (*deallocator)(void *));
 
 struct s_list		*lst_invert_rec(struct s_list **alst);
 
@@ -59,7 +59,7 @@ struct s_list		*lst_pre_alloc(
 			struct s_list **alst,
 			size_t len,
 			void *(*allocator)(size_t),
-			void (*deallocator)(void *));
+			int (*deallocator)(void *));
 
 struct s_list		*lst_create_elem(
 			void *data,

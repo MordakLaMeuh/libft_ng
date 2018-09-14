@@ -19,7 +19,7 @@ struct s_node	*btree_create_node(void *content, void *(*allocator)(size_t))
 
 int		btree_destoy_node(
 		struct s_node *node,
-		void (*deallocator)(void *))
+		int (*deallocator)(void *))
 {
 	if (node == NULL || deallocator == NULL)
 		return (-EINVAL);
@@ -30,7 +30,7 @@ int		btree_destoy_node(
 int		btree_attach_content(
 		struct s_node *node,
 		void *content,
-		void (*deallocator)(void *))
+		int (*deallocator)(void *))
 {
 	if (node == NULL)
 		return (-EINVAL);
@@ -49,7 +49,7 @@ void		*btree_get_node_content(struct s_node *node)
 
 int		btree_delete_node_content(
 		struct s_node *node,
-		void (*deallocator)(void *))
+		int (*deallocator)(void *))
 {
 	if (node && deallocator && node->content) {
 		deallocator(node->content);

@@ -3,8 +3,8 @@
 
 void	lst_del(
 	struct s_list **alst,
-	void (*del)(void *, size_t, void (*)(void *)),
-	void (*deallocator)(void *))
+	void (*del)(void *, size_t, int (*)(void *)),
+	int (*deallocator)(void *))
 {
 	struct s_list *current;
 	struct s_list *tmp;

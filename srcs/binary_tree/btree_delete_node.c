@@ -98,7 +98,7 @@ int			btree_delete_node_by_content(
 			struct s_node **root,
 			void *content,
 			int (*cmpf)(void *, void *),
-			void (*deallocator)(void *))
+			int (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
 
@@ -118,7 +118,7 @@ int			btree_delete_node_by_content(
 int			btree_delete_node(
 			struct s_node **root,
 			struct s_node *node,
-			void (*deallocator)(void *))
+			int (*deallocator)(void *))
 {
 	struct s_node *node_to_trash;
 

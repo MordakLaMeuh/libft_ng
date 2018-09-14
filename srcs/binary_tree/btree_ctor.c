@@ -10,7 +10,7 @@ struct s_node	*btree_new(void)
 ** Delete Constructor use suffix method.
 */
 
-int		btree_delete(struct s_node *root, void (*deallocator)(void *))
+int		btree_delete(struct s_node *root, int (*deallocator)(void *))
 {
 	if (root) {
 		if (deallocator == NULL)

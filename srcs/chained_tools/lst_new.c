@@ -22,7 +22,7 @@ struct s_list	*lst_new(
 		void const *content,
 		size_t content_size,
 		void *(*allocator)(size_t),
-		void (*deallocator)(void *))
+		int (*deallocator)(void *))
 {
 	struct s_list *output;
 

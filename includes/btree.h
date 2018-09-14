@@ -50,7 +50,7 @@ struct s_node	*btree_new(void);
 ** FAIL: -1 Null deallocator specified
 */
 
-int		btree_delete(struct s_node *root, void (*deallocator)(void *));
+int		btree_delete(struct s_node *root, int (*deallocator)(void *));
 
 /*
 ** Simple getter of size of a generic node.
@@ -106,7 +106,7 @@ struct s_node	*btree_smash_checker(
 int		btree_attach_content(
 		struct s_node *node,
 		void *content,
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 /*
 ** Simply destroy a node.
@@ -117,7 +117,7 @@ int		btree_attach_content(
 
 int		btree_destoy_node(
 		struct s_node *node,
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 /*
 ** Delete content of a node.
@@ -128,7 +128,7 @@ int		btree_destoy_node(
 
 int		btree_delete_node_content(
 		struct s_node *node,
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 /*
 ** --- Providing a fast way to add or remove classical binary tree node.
@@ -170,10 +170,10 @@ int		btree_delete_node_by_content(
 		struct s_node **root,
 		void *content,
 		int (*cmpf)(void *, void *),
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 int		btree_delete_node(struct s_node **root, struct s_node *node,
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 /*
 ** --- Providing a fast way to add or remove red and black binary tree node.
@@ -209,12 +209,12 @@ int		btree_delete_rnb_node_by_content(
 		struct s_node **root,
 		void *content,
 		int (*cmpf)(void *, void *),
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 int		btree_delete_rnb_node(
 		struct s_node **root,
 		struct s_node *node,
-		void (*deallocator)(void *));
+		int (*deallocator)(void *));
 
 /*
 ** --- Check if a Red and Black tree respect standard rules.
