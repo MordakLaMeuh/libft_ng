@@ -17,17 +17,17 @@ endif
 
 IFLAGS = -Iincludes
 
-SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
-	ft_strlen ft_strcpy ft_strncpy ft_strcat ft_strncat ft_strlcat \
-	ft_strchr ft_strrchr ft_strstr ft_strnstr ft_strcmp ft_strncmp \
-	ft_atoi ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower \
-	ft_strclr ft_striter ft_striteri \
-	ft_strequ ft_strnequ \
-	ft_putchar ft_putstr ft_putendl ft_putnbr ft_putnbr_base \
-	ft_secure_atoi \
-	ft_aligned_memcpy ft_aligned_bzero
+SRC_USUALS	= memset bzero memcpy memccpy memmove memchr memcmp \
+	strlen strcpy strncpy strcat strncat strlcat \
+	strchr strrchr strstr strnstr strcmp strncmp \
+	atoi isalpha isdigit isalnum isascii isprint toupper tolower \
+	strclr striter striteri \
+	strequ strnequ \
+	putchar putstr putendl putnbr putnbr_base \
+	secure_atoi \
+	aligned_memcpy aligned_bzero
 
-SRC_PRINTF	= beacon op_main modifiers extract_args \
+SRC_PRINTK	= beacon op_main modifiers extract_args \
 	s_string s_char s_numeric_u s_numeric_i \
 	s_pointer s_logical_b s_logical_o s_logical_xmin s_logical_xmaj	\
 	cast buffer norme
@@ -48,13 +48,13 @@ SRC_CHAINED	= lst_new lst_del_one lst_del lst_add lst_iter lst_map lst_invert_re
 SRC_SORT    = fusion_merge_tab fusion_merge_chain_list
 
 USUALS_DIR	= usuals_tools
-PRINTF_DIR  = ft_printf
+PRINTK_DIR  = printk
 BTREE_DIR   = binary_tree
 CHAINED_DIR = chained_tools
 SORT_DIR    = sort_tools
 
 SRC = 	$(addprefix $(USUALS_DIR)/, $(addsuffix .c, $(SRC_USUALS))) \
-		$(addprefix $(PRINTF_DIR)/, $(addsuffix .c, $(SRC_PRINTF))) \
+		$(addprefix $(PRINTK_DIR)/, $(addsuffix .c, $(SRC_PRINTK))) \
 		$(addprefix $(BTREE_DIR)/, $(addsuffix .c, $(SRC_BTREE))) \
 		$(addprefix $(CHAINED_DIR)/, $(addsuffix .c, $(SRC_CHAINED))) \
 		$(addprefix $(SORT_DIR)/, $(addsuffix .c, $(SRC_SORT)))
@@ -66,14 +66,14 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(TMP)))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) includes/libft.h includes/btree.h includes/chained_tools.h srcs/ft_printf/internal_printf.h
+$(NAME): $(OBJ) includes/libft.h includes/btree.h includes/chained_tools.h srcs/printk/internal_printf.h
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(USUALS_DIR)/%.c includes/libft.h
 	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
-$(OBJDIR)/%.o: $(SRCDIR)/$(PRINTF_DIR)/%.c srcs/ft_printf/internal_printf.h
+$(OBJDIR)/%.o: $(SRCDIR)/$(PRINTK_DIR)/%.c srcs/printk/internal_printf.h
 	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(SORT_DIR)/%.c includes/libft.h

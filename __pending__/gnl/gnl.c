@@ -15,11 +15,11 @@ static char	*s_concat(
 			mem->allocator((index->l_size + n + 1) * sizeof(char))))
 		return (NULL);
 	output[index->l_size + n] = '\0';
-	ft_memcpy(output, *str, index->l_size);
+	memcpy(output, *str, index->l_size);
 	if (index->l_size)
 		mem->deallocator(*str);
 	*str = output;
-	ft_memcpy(*str + index->l_size, index->buffer, n);
+	memcpy(*str + index->l_size, index->buffer, n);
 	index->l_size += n;
 	return (output);
 }
@@ -43,7 +43,7 @@ static int	s_exec(
 			return ((index->buff_size == 0 && *line)
 					? 1 : index->buff_size);
 		index->buffer[index->buff_size] = '\0';
-		if ((jump_location = ft_strchr(index->buffer, '\n')))
+		if ((jump_location = strchr(index->buffer, '\n')))
 			break ;
 		if (!s_concat(line, index, index->buff_size, mem))
 			return (-1);
@@ -52,7 +52,7 @@ static int	s_exec(
 	}
 	if (!s_concat(line, index, (i = jump_location - index->buffer), mem))
 		return (-1);
-	ft_memmove(index->buffer, jump_location + 1, BUFF_SIZE - (i + 1));
+	memmove(index->buffer, jump_location + 1, BUFF_SIZE - (i + 1));
 	index->buffer[(index->buff_size -= i + 1)] = '\0';
 	return (1);
 }
@@ -76,7 +76,7 @@ int		get_next_line(
 	if (index[i] == NULL) {
 		if (!(index[i] = (t_buffer *)mem->allocator(sizeof(t_buffer))))
 			return (-1);
-		ft_bzero(index[i]->buffer, BUFF_SIZE + 1);
+		bzero(index[i]->buffer, BUFF_SIZE + 1);
 		index[i]->buff_size = 0;
 		index[i]->fd = fd;
 	}
