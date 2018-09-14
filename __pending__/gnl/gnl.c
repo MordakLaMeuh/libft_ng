@@ -14,7 +14,7 @@
 #include "custom_allocator.h"
 #include "libft.h"
 
-static char		*s_concat(
+static char	*s_concat(
 		char **str,
 		t_buffer *index,
 		size_t n,
@@ -35,7 +35,7 @@ static char		*s_concat(
 	return (output);
 }
 
-static int		s_exec(
+static int	s_exec(
 		t_buffer *index,
 		char **line,
 		struct s_custom_memory_fn *mem)
@@ -45,8 +45,7 @@ static int		s_exec(
 
 	*line = NULL;
 	index->l_size = 0;
-	while (true)
-	{
+	while (true) {
 		if ((index->buff_size < 1) &&
 		(index->buff_size = read(
 				index->fd,
@@ -69,7 +68,7 @@ static int		s_exec(
 	return (1);
 }
 
-int				get_next_line(
+int		get_next_line(
 		const int fd,
 		char **line,
 		struct s_custom_memory_fn *mem)
@@ -85,8 +84,7 @@ int				get_next_line(
 		i++;
 	if (i == MAX_DESCRIPTORS)
 		return (-1);
-	if (index[i] == NULL)
-	{
+	if (index[i] == NULL) {
 		if (!(index[i] = (t_buffer *)mem->allocator(sizeof(t_buffer))))
 			return (-1);
 		ft_bzero(index[i]->buffer, BUFF_SIZE + 1);

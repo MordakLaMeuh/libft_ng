@@ -62,8 +62,7 @@ int		btree_delete_node_content(
 		struct s_node *node,
 		void (*deallocator)(void *))
 {
-	if (node && deallocator && node->content)
-	{
+	if (node && deallocator && node->content) {
 		deallocator(node->content);
 		node->content = NULL;
 		return (0);

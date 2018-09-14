@@ -31,8 +31,7 @@ static void	osx_nospecifier(t_args *args, t_status *op, char c)
 	int size;
 
 	size = (args->w) ? args->w : 1;
-	if (args->b & MINUS)
-	{
+	if (args->b & MINUS) {
 		char_to_buffer(c, 1, op);
 		char_to_buffer(' ', size - 1, op);
 		return ;
@@ -45,17 +44,13 @@ static int	add_args(t_status *op, int *i)
 {
 	t_args args;
 
-	if (*op->s == '{')
+	if (*op->s == '{') {
 		assign_modifier(op);
-	else
-	{
-		if (extract_args(op->s + 1, &args, i, op))
-		{
+	} else {
+		if (extract_args(op->s + 1, &args, i, op)) {
 			op->s += *i + 1;
 			return (args.f(&args, op));
-		}
-		else
-		{
+		} else {
 			op->s += *i + 1;
 			if (*op->s)
 				osx_nospecifier(&args, op, *op->s++);
@@ -70,17 +65,13 @@ int		new_chain(t_status *op)
 	int	ret;
 
 	i = 0;
-	while (op->s[i] != '\0')
-	{
+	while (op->s[i] != '\0') {
 		while (op->s[i] != '%' && op->s[i] != '\0' && op->s[i] != '{')
 			i++;
-		if (i)
-		{
+		if (i) {
 			string_to_buffer(op->s, i, op);
 			op->s = op->s + i;
-		}
-		else if (op->s[i] != '\0')
-		{
+		} else if (op->s[i] != '\0') {
 			ret = add_args(op, &i);
 			if (ret < 0)
 				return (-1);

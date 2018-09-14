@@ -30,10 +30,8 @@ struct s_list	*lst_map(
 
 	new_list = NULL;
 	current = lst;
-	while (current)
-	{
-		if (!(elem = f(current)))
-		{
+	while (current) {
+		if (!(elem = f(current))) {
 			lst_del(&new_list, &del_elem, deallocator);
 			return (NULL);
 		}

@@ -14,8 +14,7 @@
 
 static void		f_x(char *s, uintmax_t n, int size)
 {
-	while (size)
-	{
+	while (size) {
 		s[--size] = HEXTABLE_MIN((n & 0b1111));
 		n >>= 4;
 	}
@@ -35,8 +34,7 @@ static void		buffer_p(
 	left_justify = (args->b & MINUS) ? 1 : 0;
 	flag_0 = ((args->b & ZERO) && (args->p == -1) && (!(left_justify))) ?
 			1 : 0;
-	if (left_justify)
-	{
+	if (left_justify) {
 		ft_memset(buf + params[0] + 2, ' ', params[1] - params[0] - 2);
 		buf[0] = '0';
 		buf[1] = 'x';

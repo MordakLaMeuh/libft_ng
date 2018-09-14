@@ -37,18 +37,14 @@ struct s_list	*lst_new(
 {
 	struct s_list *output;
 
-	if ((output = (struct s_list *)allocator(sizeof(struct s_list))))
-	{
+	if ((output = (struct s_list *)allocator(sizeof(struct s_list)))) {
 		output->next = NULL;
-		if (!content)
-		{
+		if (!content) {
 			output->content = NULL;
 			output->content_size = 0;
 			return (output);
-		}
-		else if ((output->content = (char *)
-			allocator(content_size * sizeof(char))))
-		{
+		} else if ((output->content = (char *)
+			allocator(content_size * sizeof(char)))) {
 			internal_memcpy(output->content, content, content_size);
 			output->content_size = content_size;
 			return (output);

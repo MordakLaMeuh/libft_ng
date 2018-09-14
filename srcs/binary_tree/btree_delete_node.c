@@ -57,10 +57,9 @@ static struct s_node	*one_child_case(
 		*sibling = btree_get_sibling(node);
 	child = (node->left != NULL) ? node->left : node->right;
 	child->parent = node->parent;
-	if (node == *root)
+	if (node == *root) {
 		*root = child;
-	else
-	{
+	} else {
 		if (child->parent->left == node)
 			child->parent->left = child;
 		else
@@ -90,15 +89,14 @@ struct s_node		*btree_internal_trash_node(
 	if (sibling)
 		*sibling = btree_get_sibling(node);
 	parent = node->parent;
-	if (parent == NULL)
-	{
+	if (parent == NULL) {
 		*root = NULL;
 		return (node);
-	}
-	else if (parent->right == node)
+	} else if (parent->right == node) {
 		parent->right = NULL;
-	else
+	} else {
 		parent->left = NULL;
+	}
 	return (node);
 }
 
@@ -118,14 +116,13 @@ int			btree_delete_node_by_content(
 	if (root == NULL || cmpf == NULL || deallocator == NULL)
 		return (-EINVAL);
 	node_to_trash = btree_get_node_by_content(*root, content, cmpf);
-	if (node_to_trash)
-	{
+	if (node_to_trash) {
 		node_to_trash = btree_internal_trash_node(
 				node_to_trash, root, NULL);
 		deallocator(node_to_trash);
-	}
-	else
+	} else {
 		return (-1);
+	}
 	return (0);
 }
 

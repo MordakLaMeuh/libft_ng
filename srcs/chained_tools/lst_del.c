@@ -21,8 +21,7 @@ void	lst_del(
 	struct s_list *tmp;
 
 	current = *alst;
-	while (current)
-	{
+	while (current) {
 		del(current->content, current->content_size, deallocator);
 		tmp = current;
 		current = current->next;

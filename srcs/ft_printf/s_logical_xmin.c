@@ -14,8 +14,7 @@
 
 static void		f_xmin(char *s, uintmax_t n, int size)
 {
-	while (size)
-	{
+	while (size) {
 		s[--size] = HEXTABLE_MIN((n & 0b1111));
 		n >>= 4;
 	}
@@ -44,8 +43,7 @@ static void		buffer_xmin(
 	else
 		ft_memset(buf + ((flag_0 && x) ? 2 : 0), flag_0 ? '0' : ' ',
 			params[1] - params[0] - x);
-	if (x)
-	{
+	if (x) {
 		buf[(flag_0 || left_justify) ?
 				0 : params[1] - params[0] - 2] = '0';
 		buf[(flag_0 || left_justify) ?

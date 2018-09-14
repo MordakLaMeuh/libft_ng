@@ -52,10 +52,8 @@ void				assign_modifier(t_status *op)
 	int l;
 
 	l = 0;
-	while (l < MODIFIER_QUANTITY)
-	{
-		if (compare(g_modifier_list[l].string, op->s))
-		{
+	while (l < MODIFIER_QUANTITY) {
+		if (compare(g_modifier_list[l].string, op->s)) {
 			op->s += ft_strlen(g_modifier_list[l].string);
 			set_text_color(g_modifier_list[l].color);
 			return ;

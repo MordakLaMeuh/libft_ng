@@ -19,8 +19,7 @@ static int		get_wchar_t_size(wchar_t *src, int p)
 
 	i = 0;
 	len = 0;
-	while (*src)
-	{
+	while (*src) {
 		if (*src <= 0x7F || (*src <= 0xFF && (MB_CUR_MAX == 1)))
 			i += 1;
 		else if (*src <= 0x7FF)
@@ -41,8 +40,7 @@ static int		check_extended_string(wchar_t *src)
 {
 	bool err;
 
-	while (*src)
-	{
+	while (*src) {
 		err = true;
 		if ((*src & 0x80000000) || (*src >= 0xD800 && *src <= 0xDFFF))
 			err = true;
@@ -68,15 +66,13 @@ static void		fill_wchar(wchar_t c, char tmp[4], int size)
 	int i;
 	int j;
 
-	if (size == 1)
-	{
+	if (size == 1) {
 		tmp[3] = c;
 		return ;
 	}
 	i = 0;
 	j = 1;
-	while (j < size)
-	{
+	while (j < size) {
 		tmp[3 - i++] = 0x80 | (c & 0b111111);
 		c = c >> 6;
 		j++;
@@ -105,8 +101,7 @@ static int		s_wchar_t(t_args *args, t_status *op, int *utf8_size)
 		char_to_buffer((args->b & ZERO) ? '0' : ' ',
 			(len > args->w) ? 0 : args->w - len, op);
 	l = 0;
-	while (*wchar)
-	{
+	while (*wchar) {
 		fill_wchar(*wchar, tmp, *utf8_size =
 				get_size_for_string(*wchar));
 		if ((l += *utf8_size) > len)
@@ -130,13 +125,11 @@ int			s_string(t_args *args, t_status *op)
 	str = (!str) ? "(null)" : str;
 	size = ft_strlen(str);
 	size = ((args->p < size) && (args->p != -1)) ? args->p : size;
-	if (args->w <= size)
-	{
+	if (args->w <= size) {
 		string_to_buffer(str, size, op);
 		return (0);
 	}
-	if (args->b & MINUS)
-	{
+	if (args->b & MINUS) {
 		string_to_buffer(str, size, op);
 		char_to_buffer(' ', args->w - size, op);
 		return (0);

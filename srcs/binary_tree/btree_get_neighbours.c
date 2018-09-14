@@ -18,12 +18,10 @@ struct s_node	*btree_get_next_neighbours_node(struct s_node *node)
 		return (NULL);
 	if (node->right)
 		return (btree_get_lowest_node(node->right));
-	if (node->parent)
-	{
-		if (node->parent->left == node)
+	if (node->parent) {
+		if (node->parent->left == node) {
 			return (node->parent);
-		else
-		{
+		} else {
 			while (node->parent && node == node->parent->right)
 				node = node->parent;
 			return (node->parent);
@@ -38,12 +36,10 @@ struct s_node	*btree_get_prev_neighbours_node(struct s_node *node)
 		return (NULL);
 	if (node->left)
 		return (btree_get_highest_node(node->left));
-	if (node->parent)
-	{
-		if (node->parent->right == node)
+	if (node->parent) {
+		if (node->parent->right == node) {
 			return (node->parent);
-		else
-		{
+		} else {
 			while (node->parent && node == node->parent->left)
 				node = node->parent;
 			return (node->parent);

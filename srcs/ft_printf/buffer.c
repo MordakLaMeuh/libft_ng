@@ -21,13 +21,10 @@ extern void putchar(char c);
  */
 void	fflush_buffer(t_status *op)
 {
-	if (!op->str)
-	{
+	if (!op->str) {
 		for (int i = 0; i < op->buff_len; i++)
 			putchar(g_buf[i]);
-	}
-	else
-	{
+	} else {
 		ft_memcpy(op->str, g_buf, op->buff_len);
 		op->str += op->buff_len;
 	}
@@ -39,8 +36,7 @@ void	string_to_buffer(const char *s, int len, t_status *op)
 {
 	int i;
 
-	while (len > (MAX_BUF_LEN - op->buff_len))
-	{
+	while (len > (MAX_BUF_LEN - op->buff_len)) {
 		i = MAX_BUF_LEN - op->buff_len;
 		ft_memcpy(g_buf + op->buff_len, s, i);
 		s += i;
@@ -57,8 +53,7 @@ void	char_to_buffer(char c, int len, t_status *op)
 {
 	int i;
 
-	while (len > (MAX_BUF_LEN - op->buff_len))
-	{
+	while (len > (MAX_BUF_LEN - op->buff_len)) {
 		i = MAX_BUF_LEN - op->buff_len;
 		ft_memset(g_buf + op->buff_len, c, i);
 		op->buff_len += i;

@@ -20,8 +20,7 @@ struct s_list	*lst_invert_it(struct s_list **alst)
 
 	p = NULL;
 	c = *alst;
-	while (c)
-	{
+	while (c) {
 		n = c->next;
 		c->next = p;
 		p = c;

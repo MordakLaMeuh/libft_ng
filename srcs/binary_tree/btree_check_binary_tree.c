@@ -17,8 +17,7 @@ static int	apply_infix_ret(struct s_node *root, int (*applyf)(void *))
 	int ret;
 
 	ret = 0;
-	if (root)
-	{
+	if (root) {
 		if (root->left)
 			ret |= apply_infix_ret(root->left, applyf);
 		ret |= applyf(root->content);

@@ -16,8 +16,7 @@ int	btree_apply_infix(struct s_node *root, void (*applyf)(void *))
 {
 	if (applyf == NULL)
 		return (-EINVAL);
-	if (root)
-	{
+	if (root) {
 		if (root->left)
 			btree_apply_infix(root->left, applyf);
 		applyf(root->content);

@@ -14,8 +14,7 @@
 
 static void		f_xmaj(char *s, uintmax_t n, int size)
 {
-	while (size)
-	{
+	while (size) {
 		s[--size] = HEXTABLE_MAJ((n % 16));
 		n >>= 4;
 	}
@@ -29,7 +28,7 @@ static void		buffer_xmaj(uintmax_t n,
 	int		x;
 	int		flag_0;
 	int		left_justify;
-	char	buf[params[1]];
+	char		buf[params[1]];
 
 	left_justify = (args->b & MINUS) ? 1 : 0;
 	flag_0 = ((args->b & ZERO) && (!(left_justify)) &&
@@ -43,8 +42,7 @@ static void		buffer_xmaj(uintmax_t n,
 	else
 		ft_memset(buf + ((flag_0 && x) ? 2 : 0), flag_0 ? '0' : ' ',
 			params[1] - params[0] - x);
-	if (x)
-	{
+	if (x) {
 		buf[(flag_0 || left_justify) ?
 				0 : params[1] - params[0] - 2] = '0';
 		buf[(flag_0 || left_justify) ?

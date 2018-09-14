@@ -17,8 +17,7 @@ static void		fill_from_tab(struct s_list *lst, void **t, int limit)
 	int i;
 
 	i = 0;
-	while (i < limit)
-	{
+	while (i < limit) {
 		lst->content = t[i++];
 		lst = lst->next;
 	}
@@ -33,24 +32,19 @@ static void		merge_mod(
 	void **p_gr_1;
 	void **p_gr_2;
 
-	while ((p_gr_1 = s1) < end)
-	{
+	while ((p_gr_1 = s1) < end) {
 		p_gr_2 = p_gr_1 + w->offset;
-		while (TRUE)
-		{
+		while (TRUE) {
 			if (p_gr_2 < end)
 				*s2++ = w->cmp(*p_gr_2, *p_gr_1) ?
 						*p_gr_1++ : *p_gr_2++;
-			if (p_gr_1 == (s1 + w->offset))
-			{
+			if (p_gr_1 == (s1 + w->offset)) {
 				while (p_gr_2 != (s1 + (2 * w->offset))
 						&& p_gr_2 < end)
 					*s2++ = *p_gr_2++;
 				break ;
-			}
-			else if (p_gr_2 == (s1 + (2 * w->offset))
-					|| p_gr_2 >= end)
-			{
+			} else if (p_gr_2 == (s1 + (2 * w->offset))
+					|| p_gr_2 >= end) {
 				while (p_gr_1 != (s1 + w->offset)
 						&& p_gr_1 < end)
 					*s2++ = *p_gr_1++;
@@ -73,8 +67,7 @@ static void		**exec(
 	w.cmp = cmp;
 	w.offset = 1;
 	state = FALSE;
-	while (w.offset < l)
-	{
+	while (w.offset < l) {
 		if (state == FALSE)
 			merge_mod(t1, t2, t1 + l, &w);
 		else
@@ -93,8 +86,7 @@ static int		multiple_alloc(
 {
 	if (!(*t1 = (void **)mem->allocator(len * sizeof(void *))))
 		return (0);
-	if (!(*t2 = (void **)mem->allocator(len * sizeof(void *))))
-	{
+	if (!(*t2 = (void **)mem->allocator(len * sizeof(void *)))) {
 		mem->deallocator(*t1);
 		return (0);
 	}

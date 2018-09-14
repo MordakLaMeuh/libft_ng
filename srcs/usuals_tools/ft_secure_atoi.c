@@ -42,8 +42,7 @@ int		ft_secure_atoi(const char *nptr, bool *error)
 	*error = false;
 	result = 0;
 	sign = false;
-	if (*nptr == '-' || *nptr == '+')
-	{
+	if (*nptr == '-' || *nptr == '+') {
 		if (*nptr == '-')
 			sign = true;
 		nptr++;
@@ -51,8 +50,7 @@ int		ft_secure_atoi(const char *nptr, bool *error)
 	if (!(*nptr >= '0' && *nptr <= '9'))
 		*error = true;
 	else
-		while (*nptr >= '0' && *nptr <= '9')
-		{
+		while (*nptr >= '0' && *nptr <= '9') {
 			result = secure_mul(result, 10, error);
 			result = secure_add(result, ((sign) ?
 				-1 * (*nptr - '0') : (*nptr - '0')), error);

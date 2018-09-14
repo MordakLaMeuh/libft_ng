@@ -14,8 +14,7 @@
 
 static void		f_o(char *s, uintmax_t n, int size)
 {
-	while (size)
-	{
+	while (size) {
 		s[--size] = (n & 0b111) + '0';
 		n >>= 3;
 	}
@@ -41,13 +40,12 @@ static void		buffer_o(
 	else
 		ft_memset(buf, (flag_0) ? '0' : ' ', params[1] - params[0] +
 			((args->b & HASH) ? 1 : 0));
-	if (args->b & HASH)
-	{
+	if (args->b & HASH) {
 		buf[(flag_0) ? 0 : start_n] = '0';
 		f_o(buf + start_n + 1, n, params[0] - 1);
-	}
-	else
+	} else {
 		f_o(buf + start_n, n, params[0]);
+	}
 	string_to_buffer(buf, params[1], op);
 }
 
@@ -63,15 +61,14 @@ int			s_logical_o(t_args *args, t_status *op)
 	i = n;
 	while ((i = i >> 3))
 		params[0]++;
-	if (n)
-	{
+	if (n) {
 		if (args->p <= params[0])
 			params[0] += (args->b & HASH) ? 1 : 0;
 		else
 			args->b &= 0xFD;
-	}
-	else
+	} else {
 		params[0] = (args->b & HASH) ? 1 : params[0];
+	}
 	params[0] = (args->p > params[0]) ? args->p : params[0];
 	params[1] = ((int)args->w > params[0]) ? args->w : params[0];
 	buffer_o(n, args, params, op);

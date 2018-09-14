@@ -16,8 +16,7 @@ int	btree_apply_prefix(struct s_node *root, void (*applyf)(void *))
 {
 	if (applyf == NULL)
 		return (-EINVAL);
-	if (root)
-	{
+	if (root) {
 		applyf(root->content);
 		if (root->left)
 			btree_apply_prefix(root->left, applyf);

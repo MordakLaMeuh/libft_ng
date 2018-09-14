@@ -23,8 +23,7 @@ struct s_node	*btree_new(void)
 
 int		btree_delete(struct s_node *root, void (*deallocator)(void *))
 {
-	if (root)
-	{
+	if (root) {
 		if (deallocator == NULL)
 			return (-EINVAL);
 		if (root->left)

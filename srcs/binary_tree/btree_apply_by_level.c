@@ -19,8 +19,7 @@ static int	p_recurse_level_count(struct s_node *root, int n)
 
 	i = n;
 	j = n;
-	if (root)
-	{
+	if (root) {
 		if (root->left)
 			i = p_recurse_level_count(root->left, n + 1);
 		if (root->right)
@@ -38,15 +37,13 @@ static void	rec_level(
 		int lvl,
 		int *cap)
 {
-	if (lvl == *cap || lvl == -(*cap))
-	{
-		if (*cap >= 0)
-		{
+	if (lvl == *cap || lvl == -(*cap)) {
+		if (*cap >= 0) {
 			applyf(root->content, lvl, 1);
 			*cap = -(*cap);
-		}
-		else
+		} else {
 			applyf(root->content, lvl, 0);
+		}
 		return ;
 	}
 	if (root->left)
@@ -72,8 +69,7 @@ int		btree_apply_by_level(
 		return (0);
 	deep = p_recurse_level_count(root, 0);
 	i = 0;
-	while (i <= deep)
-	{
+	while (i <= deep) {
 		cap = i;
 		rec_level(root, applyf, 0, &cap);
 		i++;

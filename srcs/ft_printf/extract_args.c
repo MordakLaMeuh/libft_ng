@@ -52,12 +52,10 @@ static int		p_extract_length(const char *restrict s, t_args *args)
 	int			i;
 
 	origin = s;
-	while (true)
-	{
+	while (true) {
 		i = -1;
-		while (++i < LENGTH_TYPE_QUANTITY)
-			if (*s == g_length[i].sequence)
-			{
+		while (++i < LENGTH_TYPE_QUANTITY) {
+			if (*s == g_length[i].sequence) {
 				s++;
 				if ((args->l & Z) || (args->l & J))
 					break ;
@@ -68,6 +66,7 @@ static int		p_extract_length(const char *restrict s, t_args *args)
 						MAJOR : g_length[i].value;
 				break ;
 			}
+		}
 		if (i == LENGTH_TYPE_QUANTITY)
 			break ;
 	}
@@ -84,13 +83,11 @@ static void		p_extract_wildcard_w(
 
 	*i += 1;
 	x = (int)va_arg(op->ap, int);
-	if (next >= '0' && next <= '9')
-	{
+	if (next >= '0' && next <= '9') {
 		args->w = 0;
 		return ;
 	}
-	if ((args->w = x) < 0)
-	{
+	if ((args->w = x) < 0) {
 		args->w = -1 * args->w;
 		args->b |= MINUS;
 	}
@@ -113,18 +110,15 @@ static void		p_extract_all_stuff(
 
 	if (s[*i] == '*')
 		p_extract_wildcard_w(s[*i + 1], i, op, args);
-	if (s[*i] >= '0' && s[*i] <= '9' && args->w == 0)
-	{
+	if (s[*i] >= '0' && s[*i] <= '9' && args->w == 0) {
 		while (s[*i] >= '0' && s[*i] <= '9')
 			args->w = args->w * 10 + (s[(*i)++] - '0');
 	}
-	if (s[*i] == '.')
-	{
+	if (s[*i] == '.') {
 		*i += 1;
-		if (s[*i] == '*')
+		if (s[*i] == '*') {
 			p_extract_wildcard_p(i, op, args);
-		else
-		{
+		} else {
 			args->p = 0;
 			while (s[*i] >= '0' && s[*i] <= '9')
 				args->p = args->p * 10 + (s[(*i)++] - '0');
@@ -144,26 +138,25 @@ void			get_args(
 	int base;
 
 	base = -1;
-	while (*i != base && s[*i])
-	{
+	while (*i != base && s[*i]) {
 		base = *i;
 		j = -1;
-		while (++j < FLAGS_QUANTITY)
-			if (s[*i] == g_flags[j].flag)
-			{
+		while (++j < FLAGS_QUANTITY) {
+			if (s[*i] == g_flags[j].flag) {
 				args->b |= g_flags[j].value;
 				(*i)++;
 			}
+		}
 		p_extract_all_stuff(s, args, i, op);
 		j = -1;
-		while (++j < SPECIFIERS_QUANTITY)
-			if (s[(*i)] == g_sp_list[j].specifier)
-			{
+		while (++j < SPECIFIERS_QUANTITY) {
+			if (s[(*i)] == g_sp_list[j].specifier) {
 				(*i)++;
 				args->f = g_sp_list[j].f;
 				args->l = (g_sp_list[j].sp_len) ?
 						g_sp_list[j].sp_len : args->l;
 				return ;
 			}
+		}
 	}
 }

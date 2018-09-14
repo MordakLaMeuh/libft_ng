@@ -14,18 +14,13 @@
 
 static void		f_i(char *s, intmax_t n, int size)
 {
-	if (n < 0)
-	{
-		while (size--)
-		{
+	if (n < 0) {
+		while (size--) {
 			s[size] = (-(n % 10)) + '0';
 			n /= 10;
 		}
-	}
-	else
-	{
-		while (size--)
-		{
+	} else {
+		while (size--) {
 			s[size] = (n % 10) + '0';
 			n /= 10;
 		}

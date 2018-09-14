@@ -14,8 +14,7 @@
 
 static void		f_u(char *s, uintmax_t n, int size)
 {
-	while (size--)
-	{
+	while (size--) {
 		s[size] = (n % 10) + '0';
 		n /= 10;
 	}
@@ -31,8 +30,7 @@ static void		buffer_u(
 	int		j;
 	char		buf[size[1]];
 
-	if (args->b & MINUS)
-	{
+	if (args->b & MINUS) {
 		i = size[0];
 		j = size[1];
 		while (i < j)

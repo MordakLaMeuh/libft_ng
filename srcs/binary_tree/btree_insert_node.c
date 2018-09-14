@@ -21,25 +21,20 @@ static void	insert_child(
 		struct s_node *new,
 		int (*cmpf)(void *, void *))
 {
-	if (cmpf(new->content, parent->content) < 0)
-	{
-		if (!parent->left)
-		{
+	if (cmpf(new->content, parent->content) < 0) {
+		if (!parent->left) {
 			parent->left = new;
 			new->parent = parent;
-		}
-		else
+		} else {
 			insert_child(parent->left, new, cmpf);
-	}
-	else
-	{
-		if (!parent->right)
-		{
+		}
+	} else {
+		if (!parent->right) {
 			parent->right = new;
 			new->parent = parent;
-		}
-		else
+		} else {
 			insert_child(parent->right, new, cmpf);
+		}
 	}
 }
 
@@ -56,8 +51,7 @@ struct s_node	*btree_internal_insert_node_content(
 	new->left = NULL;
 	new->right = NULL;
 	new->content = content;
-	if (!(*root))
-	{
+	if (!(*root)) {
 		*root = new;
 		new->parent = NULL;
 	}
@@ -73,8 +67,7 @@ struct s_node	*btree_internal_insert_node(
 {
 	new->left = NULL;
 	new->right = NULL;
-	if (!(*root))
-	{
+	if (!(*root)) {
 		*root = new;
 		new->parent = NULL;
 	}

@@ -22,14 +22,12 @@ struct s_list	*lst_pre_alloc(
 
 	if (!(m = (struct s_list *)allocator(sizeof(struct s_list))))
 		return (NULL);
-	if (!(m->content = (char *)allocator(len)))
-	{
+	if (!(m->content = (char *)allocator(len))) {
 		deallocator(m);
 		return (NULL);
 	}
 	m->content_size = len;
-	if (!(*alst))
-	{
+	if (!(*alst)) {
 		*alst = m;
 		m->next = NULL;
 		return (*alst);

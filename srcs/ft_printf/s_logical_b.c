@@ -14,8 +14,7 @@
 
 static void		f_b(char *s, uintmax_t n, int size)
 {
-	while (size)
-	{
+	while (size) {
 		s[--size] = (n & 1) ? '1' : '0';
 		n >>= 1;
 	}
@@ -31,7 +30,7 @@ static void		buffer_b(
 	int		flag_hash;
 	int		left_justify;
 	int		start_n;
-	char	buf[params[1]];
+	char		buf[params[1]];
 
 	left_justify = (args->b & MINUS) ? 1 : 0;
 	flag_hash = (args->b & HASH) ? 2 : 0;

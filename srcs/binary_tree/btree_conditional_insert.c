@@ -20,16 +20,13 @@ static struct s_node	*simulate_insert_node(
 {
 	int diff;
 
-	if ((diff = cmpf(content, node->content)) < 0)
-	{
+	if ((diff = cmpf(content, node->content)) < 0) {
 		if (node->left == NULL)
 			return (node);
 		else
 			return (simulate_insert_node(
 					node->left, content, cmpf, reg));
-	}
-	else if (diff > 0)
-	{
+	} else if (diff > 0) {
 		if (node->right == NULL)
 			return (node);
 		else
@@ -53,8 +50,7 @@ struct s_node		*btree_conditional_insert(
 	if (root == NULL || cmpf == NULL || content == NULL
 			|| allocator == NULL)
 		return (NULL);
-	if (*root == NULL)
-	{
+	if (*root == NULL) {
 		if ((new = btree_create_node(content, allocator)) == NULL)
 			return (NULL);
 		*root = new;

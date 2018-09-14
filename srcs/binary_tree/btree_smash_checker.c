@@ -19,16 +19,13 @@ static struct s_node	*simulate_insert_child(
 {
 	int diff;
 
-	if ((diff = cmpf(content, parent->content)) < 0)
-	{
+	if ((diff = cmpf(content, parent->content)) < 0) {
 		if (!parent->left)
 			return (parent);
 		else
 			return (simulate_insert_child(
 					parent->left, content, cmpf));
-	}
-	else if (diff > 0)
-	{
+	} else if (diff > 0) {
 		if (!parent->right)
 			return (parent);
 		else

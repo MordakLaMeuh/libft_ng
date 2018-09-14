@@ -22,8 +22,7 @@ struct s_list	*lst_push_front(
 
 	if (!(m = lst_create_elem(data, len, allocator)))
 		return (NULL);
-	if (!(*alst))
-	{
+	if (!(*alst)) {
 		*alst = m;
 		m->next = NULL;
 		return (*alst);

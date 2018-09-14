@@ -18,10 +18,8 @@ char	*ft_strstr(const char *big, const char *little)
 
 	if (!(len = ft_strlen(little)))
 		return ((char *)big);
-	while (*big)
-	{
-		if (*big == *little)
-		{
+	while (*big) {
+		if (*big == *little) {
 			if (ft_strncmp(big, little, len) == 0)
 				return ((char *)big);
 		}

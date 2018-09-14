@@ -42,16 +42,14 @@ int				s_char(t_args *args, t_status *op)
 	wchar_t	c;
 
 	c = (wchar_t)va_arg(op->ap, wchar_t);
-	if ((args->l & L) && !(MB_CUR_MAX == 1 && (c >= 0 && c <= 0xFF)))
-	{
+	if ((args->l & L) && !(MB_CUR_MAX == 1 && (c >= 0 && c <= 0xFF))) {
 		if (!(check_valid(c)))
 			return (-1);
 		s_char_wchar(args, op, c);
 		return (0);
 	}
 	size = (args->w) ? args->w : 1;
-	if (args->b & MINUS)
-	{
+	if (args->b & MINUS) {
 		char_to_buffer(c, 1, op);
 		char_to_buffer(' ', size - 1, op);
 		return (0);

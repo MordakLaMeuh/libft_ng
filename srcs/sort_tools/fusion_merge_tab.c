@@ -21,24 +21,19 @@ static void		merge_mod(
 	void **p_gr_1;
 	void **p_gr_2;
 
-	while ((p_gr_1 = s1) < end)
-	{
+	while ((p_gr_1 = s1) < end) {
 		p_gr_2 = p_gr_1 + w->offset;
-		while (TRUE)
-		{
+		while (TRUE) {
 			if (p_gr_2 < end)
 				*s2++ = w->cmp(*p_gr_2, *p_gr_1) ?
 						*p_gr_1++ : *p_gr_2++;
-			if (p_gr_1 == (s1 + w->offset))
-			{
+			if (p_gr_1 == (s1 + w->offset)) {
 				while (p_gr_2 != (s1 + (2 * w->offset))
 						&& p_gr_2 < end)
 					*s2++ = *p_gr_2++;
 				break ;
-			}
-			else if (p_gr_2 == (s1 + (2 * w->offset))
-					|| p_gr_2 >= end)
-			{
+			} else if (p_gr_2 == (s1 + (2 * w->offset))
+					|| p_gr_2 >= end) {
 				while (p_gr_1 != (s1 + w->offset)
 						&& p_gr_1 < end)
 					*s2++ = *p_gr_1++;
@@ -56,7 +51,7 @@ static void		**exec(
 			int (*cmp)(void *, void *))
 {
 	struct s_info	w;
-	int				state;
+	int		state;
 
 	w.cmp = cmp;
 	w.offset = 1;
@@ -88,10 +83,9 @@ int				fusion_merge_tab(
 		return (0);
 	if (!(t2 = (void **)mem->allocator(len * sizeof(void *))))
 		return (-1);
-	if ((tmp = exec(*t1, t2, len, cmp)) == *t1)
+	if ((tmp = exec(*t1, t2, len, cmp)) == *t1) {
 		mem->deallocator(t2);
-	else
-	{
+	} else {
 		mem->deallocator(*t1);
 		*t1 = tmp;
 	}

@@ -28,8 +28,7 @@ void	ft_putnbr(int n)
 		exponent *= 10;
 	if (sign)
 		putchar('-');
-	while (exponent)
-	{
+	while (exponent) {
 		i = n / exponent;
 		buff = (sign) ? HEX_T(-(i % 10)) : HEX_T((i % 10));
 		n -= i * exponent;

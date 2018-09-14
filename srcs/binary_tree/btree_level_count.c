@@ -19,8 +19,7 @@ static int	recurse_level_count(struct s_node *root, int n)
 
 	i = n;
 	j = n;
-	if (root)
-	{
+	if (root) {
 		if (root->left)
 			i = recurse_level_count(root->left, n + 1);
 		if (root->right)
