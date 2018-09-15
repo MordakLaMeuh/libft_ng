@@ -1,8 +1,6 @@
 
 #include "libft.h"
 
-extern void putchar(char c);
-
 void	putnbr_base(int n, int base)
 {
 	int	exponent;

@@ -1,9 +1,9 @@
 
 #include "libft.h"
 
-extern void putchar(char c);
+extern int write(int fd, const char *buf, size_t count);
 
 void	putchar(char c)
 {
-	putchar(c);
+	write(1, &c, 1);
 }

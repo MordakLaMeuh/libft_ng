@@ -1,9 +1,7 @@
 
-extern void set_text_color(unsigned int color);
-
 #include "internal_printf.h"
 
-static int			compare(const char *s1, const char *s2)
+static int		compare(const char *s1, const char *s2)
 {
 	int i;
 
@@ -15,36 +13,33 @@ static int			compare(const char *s1, const char *s2)
 	return (0);
 }
 
-struct modifier_list {
-	char *string;
-	int color;
+static const char	*g_modifier_list[MODIFIER_QUANTITY][2] = {
+	{ "{eoc}", "\x1B[0m" },
+	{ "{red}", "\x1B[31m" },
+	{ "{green}", "\x1B[32m" },
+	{ "{yellow}", "\x1B[33m" },
+	{ "{blue}", "\x1B[34m" },
+	{ "{magenta}", "\x1B[35m" },
+	{ "{cyan}", "\x1B[36m" },
+	{ "{white}", "\x1B[37m" },
+	{ "{black}", "\x1B[38m"},
+	{ "{orange}", "\x1B[39m"},
+	{ "{grey}", "\x1B[40m"},
+	{ "{deepblue}", "\x1B[41m"},
+	{ "{lightgreen}", "\x1B[42m"}
 };
 
-static const struct modifier_list g_modifier_list[MODIFIER_QUANTITY] = {
-	{ "{eoc}", 7 },
-	{ "{red}", 4 },
-	{ "{green}", 2 },
-	{ "{yellow}", 14 },
-	{ "{blue}", 1 },
-	{ "{magenta}", 5 },
-	{ "{cyan}", 3 },
-	{ "{white}", 7 },
-	{ "{black}", 0},
-	{ "{orange}", 6},
-	{ "{grey}", 8},
-	{ "{deepblue}", 9},
-	{ "{lightgreen}", 10}
-};
-
-void				assign_modifier(t_status *op)
+void			assign_modifier(t_status *op)
 {
 	int l;
+	int j;
 
 	l = 0;
 	while (l < MODIFIER_QUANTITY) {
-		if (compare(g_modifier_list[l].string, op->s)) {
-			op->s += strlen(g_modifier_list[l].string);
-			set_text_color(g_modifier_list[l].color);
+		if (compare(g_modifier_list[l][0], op->s)) {
+			op->s += strlen(g_modifier_list[l][0]);
+			j = strlen(g_modifier_list[l][1]);
+			string_to_buffer(g_modifier_list[l][1], j, op);
 			return ;
 		}
 		l++;

@@ -1,18 +1,14 @@
 
 #include "internal_printf.h"
 
+extern int write(int fd, const char *buf, size_t count);
+
 static char g_buf[MAX_BUF_LEN];
 
-extern void graphic_putchar(char c);
-
-/*
- * WARNING: For color, buffer is not enabled
- */
 void	fflush_buffer(t_status *op)
 {
 	if (!op->str) {
-		for (int i = 0; i < op->buff_len; i++)
-			graphic_putchar(g_buf[i]);
+		write(op->fd, g_buf, op->buff_len);
 	} else {
 		memcpy(op->str, g_buf, op->buff_len);
 		op->str += op->buff_len;
@@ -35,7 +31,6 @@ void	string_to_buffer(const char *s, int len, t_status *op)
 	}
 	memcpy(g_buf + op->buff_len, s, len);
 	op->buff_len += len;
-	fflush_buffer(op);				// No buffer
 }
 
 void	char_to_buffer(char c, int len, t_status *op)
@@ -51,5 +46,4 @@ void	char_to_buffer(char c, int len, t_status *op)
 	}
 	memset(g_buf + op->buff_len, c, len);
 	op->buff_len += len;
-	fflush_buffer(op);				// No buffer
 }

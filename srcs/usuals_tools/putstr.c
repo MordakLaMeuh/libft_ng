@@ -1,8 +1,6 @@
 
 #include "libft.h"
 
-extern void putchar(char c);
-
 void	putstr(const char *s)
 {
 	size_t len = strlen(s);
