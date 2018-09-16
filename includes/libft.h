@@ -10,6 +10,7 @@
 # define NULL	0
 
 void		*memset(void *b, int c, size_t len);
+void		*memset4(u32 *restrict dst, u32 patern, size_t n);
 void		bzero(void *s, size_t n);
 void		*memcpy(void *restrict dst, const void *restrict src, size_t n);
 void		*memccpy(void *restrict dest,

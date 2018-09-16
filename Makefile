@@ -15,7 +15,7 @@ CFLAGS += -nostdinc
 
 IFLAGS = -Iincludes
 
-SRC_USUALS	= memset bzero memcpy memccpy memmove memchr memcmp \
+SRC_USUALS	= memset memset4 bzero memcpy memccpy memmove memchr memcmp \
 	strlen strcpy strncpy strcat strncat strlcat \
 	strchr strrchr strstr strnstr strcmp strncmp \
 	atoi isalpha isdigit isalnum isascii isprint toupper tolower \
