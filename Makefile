@@ -7,6 +7,8 @@ OBJDIR	= objs
 
 ifeq ($(DEBUG),yes)
 	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -g -O0
+else ifeq ($(OPTIM),yes)
+	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -O2
 else
 	CFLAGS = -m32 -std=gnu99 -Wextra -Wall
 endif
