@@ -106,39 +106,35 @@ typedef struct			s_specifier {
 	int			(*f)(t_args *, t_status *op);
 }				t_specifier;
 
-int				new_chain (t_status *op);
-void				assign_modifier (t_status *op);
-void				get_args (const char *restrict s, int *i,
-				t_args *args, t_status *op);
-int				s_logical_xmin (t_args *args, t_status *op);
-int				s_logical_xmaj (t_args *args, t_status *op);
-int				s_logical_o (t_args *args, t_status *op);
-int				s_logical_b (t_args *args, t_status *op);
-int				s_pointer (t_args *args, t_status *op);
-int				s_numeric_u (t_args *args, t_status *op);
-int				s_numeric_i (t_args *args, t_status *op);
-int				s_string (t_args *args, t_status *op);
-int				s_char (t_args *args, t_status *op);
+int	new_chain(t_status *op);
+void	assign_modifier (t_status *op);
+void	get_args(const char *restrict s, int *i, t_args *args, t_status *op);
+int	s_logical_xmin(t_args *args, t_status *op);
+int	s_logical_xmaj(t_args *args, t_status *op);
+int	s_logical_o(t_args *args, t_status *op);
+int	s_logical_b(t_args *args, t_status *op);
+int	s_pointer(t_args *args, t_status *op);
+int	s_numeric_u(t_args *args, t_status *op);
+int	s_numeric_i(t_args *args, t_status *op);
+int	s_string(t_args *args, t_status *op);
+int	s_char(t_args *args, t_status *op);
 
-int				get_size_for_string(wchar_t c);
+int	get_size_for_string(wchar_t c);
 
-void				*memset (void *b, int c, size_t len);
-void				*memcpy (void *dest, const void *src,
-																size_t n);
-size_t				strlen (const char *s);
-void				cast_u (uintmax_t *n, t_length mask);
-void				cast_i (intmax_t *n, t_length mask);
+void	*memset(void *b, int c, size_t len);
+void	*memcpy(void *dest, const void *src, size_t n);
+size_t	strlen(const char *s);
+void	cast_u(uintmax_t *n, t_length mask);
+void	cast_i(intmax_t *n, t_length mask);
 
-void				string_to_buffer(const char *s, int len,
-				t_status *op);
-void				char_to_buffer(char c, int len, t_status *op);
-void				fflush_buffer(t_status *op);
+void	string_to_buffer(const char *s, int len, t_status *op);
+void	char_to_buffer(char c, int len, t_status *op);
+void	fflush_buffer(t_status *op);
 
 /*
-** norme.c: Not logica, just for the trash norm.
-*/
+ * norme.c: Not logical, just for the trash norm.
+ */
 
-void				s_char_wchar(t_args *args, t_status *op,
-				wchar_t c);
+void	s_char_wchar(t_args *args, t_status *op, wchar_t c);
 
 #endif
