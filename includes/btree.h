@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   btree.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmickael <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bmickael <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/22 17:21:53 by bmickael           #+#    #+#             */
-/*   Updated: 2018/07/22 17:21:56 by bmickael          ###   ########.fr       */
+/*   Created: 2018/10/29 17:44:35 by bmickael          #+#    #+#             */
+/*   Updated: 2018/10/29 17:44:42 by bmickael         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,4 +331,6 @@ int				btree_apply_by_level(struct s_node *root,
 
 int				btree_level_count(struct s_node *root);
 
+int				btree_apply_infix_rev(
+		struct s_node *root, void (*applyf)(void *));
 #endif
