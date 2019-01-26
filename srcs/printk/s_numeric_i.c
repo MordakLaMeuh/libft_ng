@@ -30,9 +30,9 @@ static void		buffer_i(
 			1 : 0;
 	x = ((n < 0) || (args->b & PLUS) || (args->b & SPACE)) ? 1 : 0;
 	if (args->b & MINUS)
-		memset(buf + size[0] + x, ' ', size[1] - size[0] - x);
+		ft_memset(buf + size[0] + x, ' ', size[1] - size[0] - x);
 	else
-		memset(buf + ((flag_0 && x) ? 1 : 0),
+		ft_memset(buf + ((flag_0 && x) ? 1 : 0),
 			flag_0 ? '0' : ' ', size[1] - size[0] - x);
 	if (n < 0)
 		buf[(flag_0 || (args->b & MINUS)) ?

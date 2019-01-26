@@ -25,12 +25,12 @@ static void		buffer_xmin(
 		args->p == -1) ? 1 : 0;
 	x = ((n != 0) && (args->b & HASH)) ? 2 : 0;
 	if (left_justify)
-		memset(
+		ft_memset(
 				buf + (params[0] + x),
 				' ',
 				params[1] - params[0] - x);
 	else
-		memset(buf + ((flag_0 && x) ? 2 : 0), flag_0 ? '0' : ' ',
+		ft_memset(buf + ((flag_0 && x) ? 2 : 0), flag_0 ? '0' : ' ',
 			params[1] - params[0] - x);
 	if (x) {
 		buf[(flag_0 || left_justify) ?

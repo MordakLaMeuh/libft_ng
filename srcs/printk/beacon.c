@@ -10,7 +10,7 @@ int		printk(const char *restrict format, ...)
 	t_status	op;
 	int		ret;
 
-	memset(&op, 0, sizeof(t_status));
+	ft_memset(&op, 0, sizeof(t_status));
 	op.s = format;
 	op.fd = STDOUT;
 	va_start(op.ap, format);
@@ -29,7 +29,7 @@ int		dprintk(bool display, const char *restrict format, ...)
 
 	if (display == false)
 		return (0);
-	memset(&op, 0, sizeof(t_status));
+	ft_memset(&op, 0, sizeof(t_status));
 	op.s = format;
 	op.fd = STDOUT;
 	va_start(op.ap, format);
@@ -46,7 +46,7 @@ int		eprintk(const char *restrict format, ...)
 	t_status	op;
 	int		ret;
 
-	memset(&op, 0, sizeof(t_status));
+	ft_memset(&op, 0, sizeof(t_status));
 	op.s = format;
 	op.fd = STDERR;
 	va_start(op.ap, format);
@@ -63,7 +63,7 @@ int		fprintk(int const fd, const char *restrict format, ...)
 	t_status	op;
 	int		ret;
 
-	memset(&op, 0, sizeof(t_status));
+	ft_memset(&op, 0, sizeof(t_status));
 	op.s = format;
 	op.fd = fd;
 	va_start(op.ap, format);
@@ -82,7 +82,7 @@ int		sprintk(char *str, const char *restrict format, ...)
 
 	if (str == NULL)
 		return (-1);
-	memset(&op, 0, sizeof(t_status));
+	ft_memset(&op, 0, sizeof(t_status));
 	op.s = format;
 	op.str = str;
 	va_start(op.ap, format);

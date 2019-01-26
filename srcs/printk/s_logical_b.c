@@ -26,8 +26,8 @@ static void		buffer_b(
 	flag_0 = ((args->b & ZERO) && (args->p == -1) && (!(left_justify))) ?
 			1 : 0;
 	start_n = (left_justify) ? 0 : params[1] - params[0];
-	memset(buf, (flag_0) ? '0' : ' ', params[1]);
-	memcpy(buf + ((flag_0) ? 0 : start_n), "0b", flag_hash);
+	ft_memset(buf, (flag_0) ? '0' : ' ', params[1]);
+	ft_memcpy(buf + ((flag_0) ? 0 : start_n), "0b", flag_hash);
 	start_n += flag_hash;
 	f_b(buf + start_n, n, params[0] - flag_hash);
 	string_to_buffer(buf, params[1], op);

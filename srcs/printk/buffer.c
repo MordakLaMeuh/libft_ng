@@ -10,7 +10,7 @@ void	fflush_buffer(t_status *op)
 	if (!op->str) {
 		write(op->fd, g_buf, op->buff_len);
 	} else {
-		memcpy(op->str, g_buf, op->buff_len);
+		ft_memcpy(op->str, g_buf, op->buff_len);
 		op->str += op->buff_len;
 	}
 	op->total_size += op->buff_len;
@@ -23,13 +23,13 @@ void	string_to_buffer(const char *s, int len, t_status *op)
 
 	while (len > (MAX_BUF_LEN - op->buff_len)) {
 		i = MAX_BUF_LEN - op->buff_len;
-		memcpy(g_buf + op->buff_len, s, i);
+		ft_memcpy(g_buf + op->buff_len, s, i);
 		s += i;
 		op->buff_len += i;
 		fflush_buffer(op);
 		len -= i;
 	}
-	memcpy(g_buf + op->buff_len, s, len);
+	ft_memcpy(g_buf + op->buff_len, s, len);
 	op->buff_len += len;
 }
 
@@ -39,11 +39,11 @@ void	char_to_buffer(char c, int len, t_status *op)
 
 	while (len > (MAX_BUF_LEN - op->buff_len)) {
 		i = MAX_BUF_LEN - op->buff_len;
-		memset(g_buf + op->buff_len, c, i);
+		ft_memset(g_buf + op->buff_len, c, i);
 		op->buff_len += i;
 		fflush_buffer(op);
 		len -= i;
 	}
-	memset(g_buf + op->buff_len, c, len);
+	ft_memset(g_buf + op->buff_len, c, len);
 	op->buff_len += len;
 }

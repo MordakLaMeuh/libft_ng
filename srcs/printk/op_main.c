@@ -7,7 +7,7 @@ static int	extract_args(
 		int *i,
 		t_status *op)
 {
-	memset(args, 0, sizeof(t_args));
+	ft_memset(args, 0, sizeof(t_args));
 	args->p = -1;
 	get_args(s, i, args, op);
 	if (args->f == NULL)

@@ -24,7 +24,7 @@ static void		buffer_p(
 	flag_0 = ((args->b & ZERO) && (args->p == -1) && (!(left_justify))) ?
 			1 : 0;
 	if (left_justify) {
-		memset(buf + params[0] + 2, ' ', params[1] - params[0] - 2);
+		ft_memset(buf + params[0] + 2, ' ', params[1] - params[0] - 2);
 		buf[0] = '0';
 		buf[1] = 'x';
 		f_x(buf + 2, n, params[0]);
@@ -33,9 +33,9 @@ static void		buffer_p(
 	}
 	start_n = params[1] - params[0];
 	if (flag_0)
-		memset(buf + 2, '0', start_n - 2);
+		ft_memset(buf + 2, '0', start_n - 2);
 	else
-		memset(buf, ' ', start_n - 2);
+		ft_memset(buf, ' ', start_n - 2);
 	buf[(flag_0) ? 0 : start_n - 2] = '0';
 	buf[(flag_0) ? 1 : start_n - 1] = 'x';
 	f_x(buf + start_n, n, params[0]);

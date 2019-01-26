@@ -15,11 +15,11 @@ static char	*s_concat(
 			mem->allocator((index->l_size + n + 1) * sizeof(char))))
 		return (NULL);
 	output[index->l_size + n] = '\0';
-	memcpy(output, *str, index->l_size);
+	ft_memcpy(output, *str, index->l_size);
 	if (index->l_size)
 		mem->deallocator(*str);
 	*str = output;
-	memcpy(*str + index->l_size, index->buffer, n);
+	ft_memcpy(*str + index->l_size, index->buffer, n);
 	index->l_size += n;
 	return (output);
 }
@@ -52,7 +52,7 @@ static int	s_exec(
 	}
 	if (!s_concat(line, index, (i = jump_location - index->buffer), mem))
 		return (-1);
-	memmove(index->buffer, jump_location + 1, BUFF_SIZE - (i + 1));
+	ft_memmove(index->buffer, jump_location + 1, BUFF_SIZE - (i + 1));
 	index->buffer[(index->buff_size -= i + 1)] = '\0';
 	return (1);
 }

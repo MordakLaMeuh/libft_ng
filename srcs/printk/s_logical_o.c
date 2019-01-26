@@ -25,9 +25,9 @@ static void		buffer_o(
 			1 : 0;
 	start_n = (left_justify) ? 0 : params[1] - params[0];
 	if (left_justify)
-		memset(buf + params[0], ' ', params[1] - params[0]);
+		ft_memset(buf + params[0], ' ', params[1] - params[0]);
 	else
-		memset(buf, (flag_0) ? '0' : ' ', params[1] - params[0] +
+		ft_memset(buf, (flag_0) ? '0' : ' ', params[1] - params[0] +
 			((args->b & HASH) ? 1 : 0));
 	if (args->b & HASH) {
 		buf[(flag_0) ? 0 : start_n] = '0';

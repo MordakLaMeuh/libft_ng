@@ -121,8 +121,8 @@ int	s_char(t_args *args, t_status *op);
 
 int	get_size_for_string(wchar_t c);
 
-void	*memset(void *b, int c, size_t len);
-void	*memcpy(void *dest, const void *src, size_t n);
+void	*ft_memset(void *b, int c, size_t len);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 size_t	strlen(const char *s);
 void	cast_u(uintmax_t *n, t_length mask);
 void	cast_i(intmax_t *n, t_length mask);
