@@ -14,7 +14,7 @@ else
 	CFLAGS = -m32 -std=gnu99 -Wextra -Wall
 endif
 CFLAGS += -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
-CFLAGS += -nostdinc
+CFLAGS += -nostdinc -fno-pie
 
 IFLAGS = -Iincludes
 
@@ -77,7 +77,8 @@ ifeq ($(ALT),yes)
 	cp $(NAME) alt_$(NAME)
 	objcopy --prefix-symbols=alt_ alt_$(NAME)
 # If we encounter problems with GLOBAL_OFFSET_TABLE, uncomment this line
-	objcopy --redefine-sym alt__GLOBAL_OFFSET_TABLE_=_GLOBAL_OFFSET_TABLE_ alt_$(NAME)
+# with -fno-pie option, position-independent executable is disabled so there are no _GLOBAL_OFFSET_TABLE_
+#	objcopy --redefine-sym alt__GLOBAL_OFFSET_TABLE_=_GLOBAL_OFFSET_TABLE_ alt_$(NAME)
 endif
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(USUALS_DIR)/%.c includes/libft.h
