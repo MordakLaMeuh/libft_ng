@@ -65,11 +65,18 @@ OBJ = $(addprefix $(OBJDIR)/, $(addsuffix .o, $(TMP)))
 
 .PHONY: all re clean fclean help
 
-all: $(NAME)
+all: $(NAME) alt_$(NAME)
 
 $(NAME): $(OBJ) includes/libft.h includes/btree.h includes/chained_tools.h srcs/printk/internal_printf.h
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
+
+# ALT option create an alternate librairy with prefixed symbols "alt_", usable for some linking hacks
+alt_$(NAME): $(NAME)
+ifeq ($(ALT),yes)
+	cp $(NAME) alt_$(NAME)
+	objcopy --prefix-symbols=alt_ alt_$(NAME)
+endif
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(USUALS_DIR)/%.c includes/libft.h
 	$(CC) -c $(CFLAGS) $(IFLAGS) -o $@ $<
@@ -92,6 +99,7 @@ clean:
 fclean:
 	rm -vf $(OBJ)
 	rm -vf $(NAME)
+	rm -vf alt_$(NAME)
 
 re: fclean all
 
