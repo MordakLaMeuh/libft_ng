@@ -76,6 +76,8 @@ alt_$(NAME): $(NAME)
 ifeq ($(ALT),yes)
 	cp $(NAME) alt_$(NAME)
 	objcopy --prefix-symbols=alt_ alt_$(NAME)
+# If we encounter problems with GLOBAL_OFFSET_TABLE, uncomment this line
+	objcopy --redefine-sym alt__GLOBAL_OFFSET_TABLE_=_GLOBAL_OFFSET_TABLE_ alt_$(NAME)
 endif
 
 $(OBJDIR)/%.o: $(SRCDIR)/$(USUALS_DIR)/%.c includes/libft.h
