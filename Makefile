@@ -70,6 +70,7 @@ all: $(NAME) alt_$(NAME)
 $(NAME): $(OBJ) includes/libft.h includes/btree.h includes/chained_tools.h srcs/printk/internal_printf.h
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
+	objcopy --prefix-symbols=ft_ $(NAME)
 
 # ALT option create an alternate librairy with prefixed symbols "alt_", usable for some linking hacks
 alt_$(NAME): $(NAME)
