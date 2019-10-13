@@ -10,7 +10,7 @@ HEADER	= libft.h btree.h
 ifeq ($(DEBUG),yes)
 	CFLAGS = -std=c99 -fPIC -Wextra -Wall -Werror -g -O0 -fsanitize=address -I./$(INCDIR)
 else
-	CFLAGS = -Ofast -std=c99 -fPIC -Wextra -Wall -Werror -I./$(INCDIR)
+	CFLAGS = -Ofast -fno-omit-frame-pointer -march=native -fPIC -std=c99 -Wextra -Wall -Werror -I./$(INCDIR)
 endif
 
 SRC_USUALS	= ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp \
