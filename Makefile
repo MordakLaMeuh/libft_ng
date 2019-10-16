@@ -7,11 +7,10 @@ OBJDIR	= objs
 
 ifeq ($(DEBUG),yes)
 	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -g -O0
-else ifeq ($(OPTIM),yes)
+# else ifeq ($(OPTIM),yes)
+else
 	# -fno-omit-frame-pointer keep good call trace for panic()
 	CFLAGS = -m32 -std=gnu99 -Wextra -Wall -O3 -fno-omit-frame-pointer
-else
-	CFLAGS = -m32 -std=gnu99 -Wextra -Wall
 endif
 CFLAGS += -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
 CFLAGS += -nostdinc -fno-pie
