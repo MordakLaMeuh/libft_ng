@@ -14,6 +14,7 @@ else
 endif
 CFLAGS += -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs -fno-exceptions
 CFLAGS += -nostdinc -fno-pie
+CFLAGS += -march=pentium
 
 IFLAGS = -Iincludes
 
